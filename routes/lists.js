@@ -7,9 +7,20 @@ module.exports = (knex) => {
 
   router.get("/", (req, res) => {
     knex
-      .select("JSON")
-      .from("list")
-      .where("id", req.session.id)
+      .select("list_item")
+      .from("lists")
+      .where("id", 1)
+      .then((results) => {
+        res.json(results);
+      });
+  });
+
+  router.get("/user_lists", (req, res) => {
+    knex
+      .select("list_item")
+      .from("lists")
+      .join("users_lists", "list_id", "lists.id")
+      .where("user_id", '1')
       .then((results) => {
         res.json(results);
       });
