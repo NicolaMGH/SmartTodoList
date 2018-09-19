@@ -8,6 +8,7 @@
   z-index: 100;
   top: 0px;
   display: block;
+  text-align: center;
 
   .header {
     float: left;
@@ -24,7 +25,7 @@
 
   #new-list {
     float: right;
-    margin-top: 30px;
+    margin-top: 5px;
     padding-bottom: 10px;
     padding-top: 10px;
     padding-left: 20px;
@@ -38,7 +39,7 @@
   .login-nav {
     position: absolute;
     left: 737px;
-    margin-top: 5px;
+    margin-top: 50px;
     border-radius: 5px;
     border:1px solid black;
   }
@@ -48,5 +49,53 @@
   }
 
   .welcome {
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    color: black;
+  }
+
+  .name {
+    margin-top: 37px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    color: black;
+  }
+}
+
+.login-dropdown {
+  margin-top: 0px;
+  text-align: center;
+  float: right;
+  display: inline-block;
+  border: 1px solid black;
+  background-color: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding-bottom: 10px;
+  position: absolute;
+  right: 0;
+
+  .form-group {
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  .sign-in {
+    margin-top: 5px;
+    margin-left: 10px;
+    border-radius: 5px;
+  }
+
+  .register {
+    border-radius: 5px;
   }
 }

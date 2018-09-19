@@ -14,17 +14,34 @@
   </head>
   <body>
     <nav id="nav-bar">
-      <!-- <h1 class="welcome">Welcome!</h1> -->
+      <div class="welcome">
+        <h2 class="welcome">Welcome!</h2>
+        <h4 class="name"></h2>
+      </div>
       <div>
         <span class="header">SMART<br>Todo List</span>
       </div>
       <div class="login-new-list">
-        <button class="login-nav" id="login">Login</button>
         <button id="new-list">
           New List
         </button>
+        <button class="login-nav" id="login">Login</button>
       </div>
     </nav>
+    <form class="login-dropdown">
+      <div class="form-group">
+        <input type="username" placeholder="username">
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password">
+      </div>
+      <button class="register" type="submit">Register</button>
+      <button class="sign-in" type="submit" >Sign in</button>
+    </form>
+    <!-- <div class="login-dropdown">
+      <input type="text" name="username" placeholder="username">
+      <input type="password" name="password" placeholder="password">
+    </div> -->
     <section class="todos">
       <div class="lists">
         <h2>General</h2>
@@ -32,8 +49,8 @@
           <h3>Movies</h3>
           <ul class="cat">
             <li>Venom</li>
-            <li>Venom</li>
-            <li>Venom</li>
+            <li>Minons</li>
+            <li>Avengers</li>
           </ul>
         </div>
       </div>
