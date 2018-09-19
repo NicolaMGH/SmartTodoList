@@ -16,7 +16,7 @@ exports.seed = async function(knex, Promise) {
   const lists = await knex('lists').select();
   await knex('users_lists').insert({list_id: `${lists[1].id}`, user_id:`${users[1].id}`}),
   await knex('users_lists').insert({list_id: `${lists[2].id}`, user_id:`${users[0].id}`}),
-  await knex('users_lists').insert({list_id: `${lists[0].id}`, user_id:`${users[2].id}`})
+  await knex('users_lists').insert({list_id: `${lists[0].id}`, user_id:`${users[0].id}`})
 }
 
 
