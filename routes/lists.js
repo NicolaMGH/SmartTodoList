@@ -20,11 +20,13 @@ module.exports = (knex) => {
       .select("list_item")
       .from("lists")
       .join("users_lists", "list_id", "lists.id")
-      .where("user_id", '1')
+      .where("user_id", req.session.id)
       .then((results) => {
         res.send(results);
       });
   });
+
+  router.post('/')
 
   router.get("/auth", (req, res) => {
     const UN = req.body.username;

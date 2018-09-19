@@ -42,7 +42,7 @@ function renderTDL(a) {
 function signInButton (){
   $('.login-dropdown').on('submit', (event) => {
     event.preventDefault();
-    $.ajax('/api/lists/user_lists', {method: 'GET'})
+    $.ajax('/lists/user_lists', {method: 'GET'})
       .then((data) => {
         data.forEach(obj => {
           for (let key in obj) {
@@ -55,17 +55,6 @@ function signInButton (){
 }
 
 
-// const test = JSON.parse('{"title":"foring list","book":["angers","man"]}');
-
-
-
-
-
-
-
-
-
 $(document).ready(function() {
-  // $('section').append(createTDL(test));
   signInButton();
 });

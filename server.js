@@ -43,15 +43,15 @@ app.use(cookieSess({
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
-app.use("/api/lists", listsRoutes(knex));
+app.use("/lists", listsRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post("/test", (req, res) => {
-  req.session.id = 'hi';
+app.get("/test", (req, res) => {
+  req.session.id = 1;
   console.log(req.body, req.session.id);
 
   res.redirect("/");
