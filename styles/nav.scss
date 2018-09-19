@@ -1,0 +1,51 @@
+#nav-bar {
+  position: fixed;
+  height: 80px;
+  background-color: lightblue;
+  color: #e8fdff;
+  width: 100%;
+  padding: 0em 2em 0em 2em;
+  z-index: 100;
+  top: 0px;
+
+  .header {
+    float: left;
+    font-size: 1.5em;
+    line-height: 30px;
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  #new-list:hover {
+    background-color: lightblue;
+  }
+
+  #new-list {
+    float: right;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: black;
+    border-radius: 10px;
+    border: 0;
+    border:1px solid black;
+  }
+
+  .login-nav {
+    position: absolute;
+    left: 737px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border:1px solid black;
+  }
+
+  .login-new-list {
+    float: right;
+  }
+
+  .welcome {
+  }
+}
