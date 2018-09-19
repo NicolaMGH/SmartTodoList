@@ -55,9 +55,37 @@ function signInButton (){
 }
 
 
-// const test = JSON.parse('{"title":"foring list","book":["angers","man"]}');
+function newListButton (){
+    $("#new-list").click(function(){
+    $("input[type='text']").fadeToggle();
+  });
+}
 
+function newList () {
+    $("input[type='text']").keypress(function(event){
+    if(event.which === 13){
+      //grabbing new todo text from input
+      var todoText = $(this).val();
+      $.ajax('/lists', {method: 'POST', data: todoText})
+      $(this).val("");
+      //create a new li and add to ul
+      const $todo = $("<div>").addClass("lists");
+      const header = `<div class="list-title">
+                        <h2>${todoText}</h2>
+                        <span id="plus"><i class="fas fa-plus"></i></span>
+                      </div>`;
+      const $body = $(`<div><h3></h3></div>`);
+      const $list = $(`<ul class="cat"></ul>`);
+      const $bodyCon = $("<div>");
+      $body.append($list);
+      $bodyCon.append($body);
+      $todo.append(header);
+      $todo.append($bodyCon);
+      $(".todos").append($todo)
 
+    }
+  });
+}
 
 
 
@@ -68,4 +96,6 @@ function signInButton (){
 $(document).ready(function() {
   // $('section').append(createTDL(test));
   signInButton();
+  newListButton();
+  newList();
 });
