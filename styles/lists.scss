@@ -14,7 +14,30 @@
     padding: 0px;
   }
 
-  .lists {
+  h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    padding-right: 5px;
+    padding-left: 20px;
+  }
+
+  .list-title {
+    color: black;
+    margin: 0;
+    padding: 5px 60px;
+    text-transform: uppercase;
+    border:1px solid black;
+    border-radius: 5px;
+    margin-top: 15px;
+    display: flex;
+    padding-right: 10px;
+  }
+
+  #plus {
+    color: black;
+    margin-top: 7px;
+    margin-left: 60px;
   }
 }
 
