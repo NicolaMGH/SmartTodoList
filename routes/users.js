@@ -14,5 +14,10 @@ module.exports = (knex) => {
     });
   });
 
+  router.get("/auth", (req, res) => {
+    const UN = req.body.username;
+    const PW = req.body.password;
+  })
+
   return router;
 }
