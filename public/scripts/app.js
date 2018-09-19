@@ -16,8 +16,8 @@ function createTDL(obj) {
                     <span id="plus"><i class="fas fa-plus"></i></span>
                   </div>`;
   const $bodyCon = $("<div>");
-  for (key in obj) {
-    if (key != "title") {
+  for (let key in obj) {
+    if (key !== "title") {
       const $body = $(`<div>
                       <h3>${key}</h3>
                     </div>`);
@@ -31,7 +31,6 @@ function createTDL(obj) {
   $todo.append(header);
   $todo.append($bodyCon);
 
-  console.log($todo);
   return $todo;
 }
 
@@ -41,12 +40,16 @@ function renderTDL(a) {
 
 
 function signInButton (){
-  $('.sign-in').on('click', () => {
+  $('.login-dropdown').on('submit', (event) => {
+    event.preventDefault();
     $.ajax('/api/lists/user_lists', {method: 'GET'})
       .then((data) => {
-        console.log(data);
-        const d = JSON.parse(data);
-        $('section').append(createTDL(d));
+        data.forEach(obj => {
+          for (let key in obj) {
+            $('section').append(createTDL(obj[key]));
+          }
+        })
+
       })
   });
 }

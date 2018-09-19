@@ -22,7 +22,7 @@ module.exports = (knex) => {
       .join("users_lists", "list_id", "lists.id")
       .where("user_id", '1')
       .then((results) => {
-        res.json(results);
+        res.send(results);
       });
   });
 
