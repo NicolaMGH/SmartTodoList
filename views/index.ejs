@@ -12,6 +12,10 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <link rel="stylesheet" href="/jqueryui/jquery-ui.min.css">
+    <script src="/jqueryui/external/jquery/jquery.js"></script>
+    <script src="/jqueryui/jquery-ui.min.js"></script>
+
   </head>
   <body>
     <nav id="nav-bar">
@@ -43,15 +47,65 @@
     <section class="todos">
       <div class="lists">
         <div class="list-title">
+          <span class="deleteButton"><i class="fas fa-trash"></i></span>
           <h2>Things TODO</h2>
-          <span id="plus"><i class="fas fa-plus"></i></span>
+          <span class="plus"><i class="fas fa-plus"></i></span>
         </div>
-        <div>
-          <h3>Movies</h3>
-          <ul class="cat">
-            <li>Venom</li>
-            <li>Minons</li>
-            <li>Avengers</li>
+        <input class="new-todo-input" type="text" placeholder="Add TODO">
+        <div class="list-dropdown">
+          <h3>Watch</h3>
+          <ul class="watch">
+            <li><span class="delete"><i class="fas fa-times"></i></span>Venom</li>
+            <li><span class="delete"><i class="fas fa-times"></i></span>Minons</li>
+            <li><span class="delete"><i class="fas fa-times"></i></span>Avengers</li>
+          </ul>
+          <h3>Eat</h3>
+          <ul class="eat">
+            <li><span class="delete"><i class="fas fa-times"></i></span>Kayomono</li>
+          </ul>
+          <h3>Buy</h3>
+          <ul class="buy">
+            <li><span class="delete"><i class="fas fa-times"></i></span>New couch</li>
+          </ul>
+          <h3>Read</h3>
+          <ul class="read">
+            <li><span class="delete"><i class="fas fa-times"></i></span>Harry Potter</li>
+          </ul>
+          <h3>Play</h3>
+          <ul class="play">
+            <li><span class="delete"><i class="fas fa-times"></i></span>Just Cause 4</li>
+          </ul>
+        </div>
+      </div>
+      <div class="lists">
+        <div class="list-title">
+          <span class="deleteButton"><i class="fas fa-trash"></i></span>
+          <h2>Things TODO</h2>
+          <span class="plus"><i class="fas fa-plus"></i></span>
+        </div>
+        <input class="new-todo-input" type="text" placeholder="Add TODO">
+        <div class="list-dropdown">
+          <h3>Watch</h3>
+          <ul class="watch">
+            <li><span class="delete"><i class="fas fa-times"></i></span>Venom</li>
+            <li><span class="delete"><i class="fas fa-times"></i></span>Minons</li>
+            <li><span class="delete"><i class="fas fa-times"></i></span>Avengers</li>
+          </ul>
+          <h3>Eat</h3>
+          <ul class="eat">
+            <li><span class="delete"><i class="fas fa-times"></i></span>Kayomono</li>
+          </ul>
+          <h3>Buy</h3>
+          <ul class="buy">
+            <li><span class="delete"><i class="fas fa-times"></i></span>New couch</li>
+          </ul>
+          <h3>Read</h3>
+          <ul class="read">
+            <li><span class="delete"><i class="fas fa-times"></i></span>Harry Potter</li>
+          </ul>
+          <h3>Play</h3>
+          <ul class="play">
+            <li><span class="delete"><i class="fas fa-times"></i></span>Just Cause 4</li>
           </ul>
         </div>
       </div>
