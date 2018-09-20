@@ -17,18 +17,25 @@ module.exports = (knex) => {
 
   router.get("/user_lists", (req, res) => {
     knex
-      .select("list_item")
-      .from("lists")
-      .join("users_lists", "list_id", "lists.id")
-      .where("user_id", req.session.id)
+      .select('item', 'category')
+      .from('list_items')
+      .join('lists', 'list_id', 'lists.id')
+      .join('users_lists', 'lists.id', 'users_lists.list_id')
+      .join('users', 'users_lists.user_id', 'users.id')
+      .where('users.id', req.session.id)
+      .andWhere('lists.id', 1)
       .then((results) => {
+        console.log(results);
         res.send(results);
       });
   });
 
   router.post('/', (req, res) => {
-    const todo = req.body.data
-    knex()
+    const todo = req.body
+    console.log(todo);
+    const input = Object.keys(todo);
+
+    knex('lists')
     .insert()
   })
 

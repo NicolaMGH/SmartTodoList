@@ -43,7 +43,7 @@ function signInButton (){
   $('.login-dropdown').on('submit', (event) => {
     event.preventDefault();
     $('.login-dropdown').slideUp();
-    $.ajax('/api/lists/user_lists', {method: 'GET'})
+    $.ajax('/lists/user_lists', {method: 'GET'})
       .then((data) => {
         data.forEach(obj => {
           for (let key in obj) {
@@ -74,7 +74,6 @@ function newList () {
       $("input[type='text']").fadeToggle();
       //grabbing new todo text from input
       var todoText = $(this).val();
-      $.ajax('/lists', {method: 'POST', data: todoText})
       $(this).val("");
       //create a new li and add to ul
       const $todo = $("<div>").addClass("lists");
@@ -90,6 +89,8 @@ function newList () {
       $todo.append(header);
       $todo.append($bodyCon);
       $(".todos").prepend($todo)
+      const list = {title: todoText}
+      $.ajax('/lists', { method: 'POST', data: list })
     }
   });
 }
