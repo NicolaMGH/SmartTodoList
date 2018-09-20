@@ -19,6 +19,7 @@ function createTDL(obj) {
   const input = `<input class="new-todo-input" type="text" placeholder="Add TODO">`
   const $bodyCon = $("<div>").addClass("list-dropdown");
   for (let key in obj) {
+     console.log(key)
     if (key !== "title") {
       const $body = $(`<div>
                       <h3>${key}</h3>
@@ -27,17 +28,20 @@ function createTDL(obj) {
       obj[key].forEach(item => $list.append(`<li><span class="delete"><i class="fas fa-times"></i></span>${item}</li>`));
       $body.append($list);
       $bodyCon.append($body);
+      console.log(obj.title)
     }
   }
 
   $todo.append(header);
   $todo.append(input);
+  console.log('BODYCON', $bodyCon)
   $todo.append($bodyCon);
+
   newTodoPlus();
   deleteTodo();
   addTodo();
   completed();
-  listDropdown();
+  console.log('adding list?');
   deleteList();
   sorted();
 
@@ -57,6 +61,7 @@ function signInButton (){
     const data = await $.ajax('/lists/user_lists', {method: 'GET'});
     data.forEach(obj => {
       for (let key in obj) {
+        console.log("object",obj)
         $('section').append(createTDL(obj[key]));
       }
     });
@@ -125,7 +130,6 @@ function newList () {
       deleteTodo();
       addTodo();
       completed();
-      listDropdown();
       deleteList();
       sorted();
     }
@@ -177,11 +181,9 @@ function deleteList () {
 }
 
 function listDropdown () {
-  $('.list-title').off();
-  $('.list-title').on('click', (e) => {
+  $(document).on('click', '.list-title', (e) => {
     const $list = $(e.target).closest('.list-title').siblings('.list-dropdown')
     $list.slideToggle();
-    //$('.list-dropdown').not($list).slideToggle();
   })
 }
 
