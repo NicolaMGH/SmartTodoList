@@ -34,12 +34,14 @@
     border-radius: 10px;
     border: 0;
     border:1px solid black;
+    opacity: 0;
+    display: none;
   }
 
   .login-nav {
     position: absolute;
     right: 4.3%;
-    margin-top: 50px;
+    margin-top: 28px;
     border-radius: 5px;
     border:1px solid black;
   }
@@ -99,4 +101,8 @@
   .register {
     border-radius: 5px;
   }
+}
+
+.newListToggle {
+  opacity: 1;
 }
