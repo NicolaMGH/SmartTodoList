@@ -1,9 +1,9 @@
 
 exports.seed = async function(knex, Promise) {
+  await knex('list_items').del();
   await knex('users_lists').del();
   await knex('users').del();
   await knex('lists').del();
-  await knex('list_items').del();
   await knex.raw('ALTER SEQUENCE lists_id_seq RESTART;');
   await knex.raw('ALTER SEQUENCE users_id_seq RESTART;');
   await knex.raw('ALTER SEQUENCE users_lists_id_seq RESTART;');
@@ -23,17 +23,21 @@ exports.seed = async function(knex, Promise) {
   await knex('users_lists').insert({list_id: `${lists[0].id}`, user_id:`${users[0].id}`});
 
   await knex('list_items').insert({list_id: `${lists[0].id}`,item:"avengers",category:"watch"});
+  await knex('list_items').insert({list_id: `${lists[0].id}`,item:"ironman",category:"watch"});
   await knex('list_items').insert({list_id: `${lists[1].id}`,item:"batmans",category:"watch"});
   await knex('list_items').insert({list_id: `${lists[2].id}`,item:"birdman",category:"watch"});
   await knex('list_items').insert({list_id: `${lists[0].id}`,item:"burgers",category:"eat"});
+  await knex('list_items').insert({list_id: `${lists[0].id}`,item:"banana",category:"eat"});
   await knex('list_items').insert({list_id: `${lists[1].id}`,item:"apple",category:"eat"});
   await knex('list_items').insert({list_id: `${lists[2].id}`,item:"lunch",category:"eat"});
   await knex('list_items').insert({list_id: `${lists[0].id}`,item:"station",category:"play"});
   await knex('list_items').insert({list_id: `${lists[1].id}`,item:"football",category:"play"});
+  await knex('list_items').insert({list_id: `${lists[1].id}`,item:"songs",category:"play"});
   await knex('list_items').insert({list_id: `${lists[2].id}`,item:"cat",category:"play"});
   await knex('list_items').insert({list_id: `${lists[0].id}`,item:"toys",category:"buy"});
   await knex('list_items').insert({list_id: `${lists[1].id}`,item:"house",category:"buy"});
   await knex('list_items').insert({list_id: `${lists[2].id}`,item:"laptop",category:"buy"});
+  await knex('list_items').insert({list_id: `${lists[2].id}`,item:"girfriend",category:"buy"});
 }
 
 
