@@ -12,8 +12,9 @@
 function createTDL(obj) {
   const $todo = $("<div>").addClass("lists");
   const header = `<div class="list-title">
+                    <span class="deleteButton"><i class="fas fa-trash"></i></span>
                     <h2>${obj.title}</h2>
-                    <span id="plus"><i class="fas fa-plus"></i></span>
+                    <span class="plus"><i class="fas fa-plus"></i></span>
                   </div>`;
   const input = `<input class="new-todo-input" type="text" placeholder="Add TODO">`
   const $bodyCon = $("<div>").addClass("list-dropdown");
@@ -37,6 +38,8 @@ function createTDL(obj) {
   addTodo();
   completed();
   listDropdown();
+  deleteList();
+  sorted();
 
   return $todo;
 }
@@ -104,8 +107,9 @@ function newList () {
       //create a new li and add to ul
       const $todo = $("<div>").addClass("lists");
       const header = `<div class="list-title">
+                        <span class="deleteButton"><i class="fas fa-trash"></i></span>
                         <h2>${todoText}</h2>
-                        <span id="plus"><i class="fas fa-plus"></i></span>
+                        <span class="plus"><i class="fas fa-plus"></i></span>
                       </div>`;
       const input = `<input class="new-todo-input" type="text" placeholder="Add TODO">`
       const $body = $(`<div><h3></h3></div>`);
@@ -122,6 +126,8 @@ function newList () {
       addTodo();
       completed();
       listDropdown();
+      deleteList();
+      sorted();
     }
   });
 }
@@ -161,13 +167,36 @@ function deleteTodo () {
   });
 }
 
+function deleteList () {
+  $("div").on("click", ".deleteButton", function(event){
+    $(this).closest('.lists').fadeOut(500,function(){
+      $(this).closest('.lists').remove();
+    });
+    event.stopPropagation();
+  });
+}
+
 function listDropdown () {
+  $('.list-title').off();
   $('.list-title').on('click', (e) => {
     const $list = $(e.target).closest('.list-title').siblings('.list-dropdown')
     $list.slideToggle();
     //$('.list-dropdown').not($list).slideToggle();
   })
 }
+
+function sorted () {
+  $('ul').sortable({
+    connectWith: $('ul'),
+    receive: function(event, ui) {
+      const $listItem = $(ui.item[0]).text();
+      const $catName = $(ui.item[0]).parent().prev().text();
+      $.ajax('/lists', {method: 'PUT', listItem: $listItem, catName: $catName})
+    }
+  });
+}
+
+
 
 $(document).ready(function() {
   signInButton();
@@ -179,4 +208,6 @@ $(document).ready(function() {
   addTodo();
   deleteTodo();
   listDropdown();
+  deleteList();
+  sorted();
 });

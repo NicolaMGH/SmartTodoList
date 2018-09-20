@@ -33,7 +33,7 @@
   .list-title {
     color: black;
     margin: 0;
-    padding: 5px 60px;
+    padding: 5px 10px;
     text-transform: uppercase;
     border:1px solid black;
     border-radius: 5px;
@@ -42,7 +42,7 @@
     justify-content: space-around;
   }
 
-  #plus {
+  .plus {
     color: black;
     margin-top: 7px;
     margin-left: 60px;
@@ -95,6 +95,19 @@
   .list-dropdown {
     margin: 25px 0px 25px 0px;
     display: none;
+  }
+
+  .deleteButton {
+    color: black;
+    margin-top: 7px;
+    float: left;
+    opacity: 0;
+  }
+
+  .list-title:hover .deleteButton {
+    opacity: 1;
+    color: red;
+    transition: 0.2s linear;
   }
 }
 

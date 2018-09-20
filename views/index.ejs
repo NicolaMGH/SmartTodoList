@@ -12,6 +12,10 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <link rel="stylesheet" href="/jqueryui/jquery-ui.min.css">
+    <script src="/jqueryui/external/jquery/jquery.js"></script>
+    <script src="/jqueryui/jquery-ui.min.js"></script>
+
   </head>
   <body>
     <nav id="nav-bar">
@@ -43,9 +47,9 @@
     <section class="todos">
       <div class="lists">
         <div class="list-title">
-          <span><i class="fas fa-trash"></i></span>
+          <span class="deleteButton"><i class="fas fa-trash"></i></span>
           <h2>Things TODO</h2>
-          <span id="plus"><i class="fas fa-plus"></i></span>
+          <span class="plus"><i class="fas fa-plus"></i></span>
         </div>
         <input class="new-todo-input" type="text" placeholder="Add TODO">
         <div class="list-dropdown">
@@ -75,9 +79,9 @@
       </div>
       <div class="lists">
         <div class="list-title">
-          <span><i class="fas fa-trash"></i></span>
+          <span class="deleteButton"><i class="fas fa-trash"></i></span>
           <h2>Things TODO</h2>
-          <span id="plus"><i class="fas fa-plus"></i></span>
+          <span class="plus"><i class="fas fa-plus"></i></span>
         </div>
         <input class="new-todo-input" type="text" placeholder="Add TODO">
         <div class="list-dropdown">
