@@ -38,7 +38,7 @@
 
   .login-nav {
     position: absolute;
-    left: 737px;
+    right: 4.3%;
     margin-top: 50px;
     border-radius: 5px;
     border:1px solid black;
@@ -83,6 +83,7 @@
   padding-bottom: 10px;
   position: absolute;
   right: 0;
+  display: none;
 
   .form-group {
     border-radius: 5px;

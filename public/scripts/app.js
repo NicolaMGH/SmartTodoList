@@ -42,7 +42,8 @@ function renderTDL(a) {
 function signInButton (){
   $('.login-dropdown').on('submit', (event) => {
     event.preventDefault();
-    $.ajax('/lists/user_lists', {method: 'GET'})
+    $('.login-dropdown').slideUp();
+    $.ajax('/api/lists/user_lists', {method: 'GET'})
       .then((data) => {
         data.forEach(obj => {
           for (let key in obj) {
@@ -54,7 +55,59 @@ function signInButton (){
   });
 }
 
+function loginSlideDown () {
+  $('.login-nav').on('click', (event) => {
+    $('.login-dropdown').slideToggle();
+  })
+}
+
+
+function newListButton (){
+    $("#new-list").click(function(){
+    $("input[type='text']").fadeToggle();
+  });
+}
+
+function newList () {
+    $("input[type='text']").keypress(function(event){
+    if(event.which === 13){
+      $("input[type='text']").fadeToggle();
+      //grabbing new todo text from input
+      var todoText = $(this).val();
+      $.ajax('/lists', {method: 'POST', data: todoText})
+      $(this).val("");
+      //create a new li and add to ul
+      const $todo = $("<div>").addClass("lists");
+      const header = `<div class="list-title">
+                        <h2>${todoText}</h2>
+                        <span id="plus"><i class="fas fa-plus"></i></span>
+                      </div>`;
+      const $body = $(`<div><h3></h3></div>`);
+      const $list = $(`<ul class="cat"></ul>`);
+      const $bodyCon = $("<div>");
+      $body.append($list);
+      $bodyCon.append($body);
+      $todo.append(header);
+      $todo.append($bodyCon);
+      $(".todos").prepend($todo)
+    }
+  });
+}
+
+function completed () {
+    $("ul").on("click", "li", function(){
+    $(this).toggleClass("completed");
+  });
+}
+
+
+
+
 
 $(document).ready(function() {
   signInButton();
+  newListButton();
+  newList();
+  loginSlideDown();
+  completed();
 });

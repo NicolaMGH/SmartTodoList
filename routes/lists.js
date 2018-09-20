@@ -26,7 +26,11 @@ module.exports = (knex) => {
       });
   });
 
-  router.post('/')
+  router.post('/', (req, res) => {
+    const todo = req.body.data
+    knex()
+    .insert()
+  })
 
   router.get("/auth", (req, res) => {
     const UN = req.body.username;
