@@ -40,18 +40,16 @@ function renderTDL(a) {
 
 
 function signInButton (){
-  $('.login-dropdown').on('submit', (event) => {
+  $('.login-dropdown').on('submit', async (event) => {
     event.preventDefault();
     $('.login-dropdown').slideUp();
-    $.ajax('/api/lists/user_lists', {method: 'GET'})
-      .then((data) => {
-        data.forEach(obj => {
-          for (let key in obj) {
-            $('section').append(createTDL(obj[key]));
-          }
-        })
-
-      })
+    await $.ajax('/test', {method: 'GET'})
+    const data = await $.ajax('/lists/user_lists', {method: 'GET'})
+    data.forEach(obj => {
+      for (let key in obj) {
+        $('section').append(createTDL(obj[key]));
+      }
+    })
   });
 }
 
@@ -99,7 +97,6 @@ function completed () {
     $(this).toggleClass("completed");
   });
 }
-
 
 
 
