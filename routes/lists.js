@@ -15,20 +15,29 @@ module.exports = (knex) => {
       });
   });
 
-  router.get("/user_lists", (req, res) => {
+  router.get("/user_lists", async (req, res) => {
     knex
-      .select('item', 'category')
+      .select('lists.id', 'list_items.item', 'list_items.category', 'lists.title')
       .from('list_items')
-      .join('lists', 'list_id', 'lists.id')
-      .join('users_lists', 'lists.id', 'users_lists.list_id')
-      .join('users', 'users_lists.user_id', 'users.id')
-      .where('users.id', req.session.id)
-      .andWhere('lists.id', 1)
-      .then((results) => {
-        console.log(results);
-        res.send(results);
+      .join('lists', 'lists.id', '=', 'list_items.list_id')
+      .join('users_lists', 'users_lists.list_id', '=', 'lists.id')
+      .where('users_lists.user_id', req.session.id)
+      .then(items => {
+        const lists = {};
+        items.forEach((item) => {
+          if (!lists[item.id]) {
+            lists[item.id] = {title: item.title};
+            lists[item.id][item.category] = [item.item];
+          } else if (!lists[item.id][item.category]) {
+            lists[item.id][item.category] = [item.item];
+          } else {
+            lists[item.id][item.category].push(item.item);
+          }
+        })
+        console.log('im done', lists);
       });
   });
+
 
   router.post('/', (req, res) => {
     const todo = req.body
