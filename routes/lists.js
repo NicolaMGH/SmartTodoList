@@ -2,19 +2,20 @@
 
 const express = require('express');
 const router = express.Router();
+const massage = require('../helpers/data-massage');
 
 module.exports = (knex) => {
 
   router.get("/", (req, res) => {
     knex
-      .select("list_item")
-      .from("lists")
-      .where("id", 1)
+      .select("item")
+      .from("list_items")
       .then((results) => {
         res.json(results);
       });
   });
 
+  // GET todos lists based on session
   router.get("/user_lists", async (req, res) => {
     knex
       .select('lists.id', 'list_items.item', 'list_items.category', 'lists.title')
@@ -23,18 +24,7 @@ module.exports = (knex) => {
       .join('users_lists', 'users_lists.list_id', '=', 'lists.id')
       .where('users_lists.user_id', req.session.id)
       .then(items => {
-        const lists = {};
-        items.forEach((item) => {
-          if (!lists[item.id]) {
-            lists[item.id] = {title: item.title};
-            lists[item.id][item.category] = [item.item];
-          } else if (!lists[item.id][item.category]) {
-            lists[item.id][item.category] = [item.item];
-          } else {
-            lists[item.id][item.category].push(item.item);
-          }
-        })
-        console.log('im done', lists);
+        res.send(massage.dataToObj(items));
       });
   });
 
