@@ -55,17 +55,35 @@
     border-radius: 5px;
     padding-bottom: 15px;
     margin-bottom: 15px;
+    margin-top: 30px;
   }
 
-  input {
-    font-size: 18px;
-    color: #2980b9;
-    background-color: #f7f7f7;
-    width: 70%;
-    padding: 13px 13px 13px 20px;
-    box-sizing: border-box;
-    border: 3px solid rgba(0,0,0,0);
-    margin-bottom: 15px;
+  li {
+    background: #fff;
+    line-height: 180%;
+    color: #666;
+  }
+
+  li:nth-child(2n){
+    background: #f7f7f7;
   }
 }
 
+.new-list-input {
+  font-size: 18px;
+  color: #2980b9;
+  background-color: #f7f7f7;
+  width: 53%;
+  padding: 13px 13px 13px 20px;
+  box-sizing: border-box;
+  border: 3px solid rgba(0,0,0,0);
+  margin-bottom: 15px;
+  margin-top: 80px;
+  margin-left: 7px;
+  display: none;
+}
+
+.completed {
+  color: gray;
+  text-decoration: line-through;
+}

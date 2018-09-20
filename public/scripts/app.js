@@ -42,6 +42,7 @@ function renderTDL(a) {
 function signInButton (){
   $('.login-dropdown').on('submit', (event) => {
     event.preventDefault();
+    $('.login-dropdown').slideUp();
     $.ajax('/api/lists/user_lists', {method: 'GET'})
       .then((data) => {
         data.forEach(obj => {
@@ -54,6 +55,12 @@ function signInButton (){
   });
 }
 
+function loginSlideDown () {
+  $('.login-nav').on('click', (event) => {
+    $('.login-dropdown').slideToggle();
+  })
+}
+
 
 function newListButton (){
     $("#new-list").click(function(){
@@ -64,6 +71,7 @@ function newListButton (){
 function newList () {
     $("input[type='text']").keypress(function(event){
     if(event.which === 13){
+      $("input[type='text']").fadeToggle();
       //grabbing new todo text from input
       var todoText = $(this).val();
       $.ajax('/lists', {method: 'POST', data: todoText})
@@ -81,13 +89,16 @@ function newList () {
       $bodyCon.append($body);
       $todo.append(header);
       $todo.append($bodyCon);
-      $(".todos").append($todo)
-
+      $(".todos").prepend($todo)
     }
   });
 }
 
-
+function completed () {
+    $("ul").on("click", "li", function(){
+    $(this).toggleClass("completed");
+  });
+}
 
 
 
@@ -98,4 +109,6 @@ $(document).ready(function() {
   signInButton();
   newListButton();
   newList();
+  loginSlideDown();
+  completed();
 });
