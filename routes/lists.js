@@ -24,7 +24,7 @@ module.exports = (knex) => {
       .join('users_lists', 'users_lists.list_id', '=', 'lists.id')
       .where('users_lists.user_id', req.session.id)
       .then(items => {
-        console.log(items);
+        console.log(massage.dataToObj(items));
 
         res.send(massage.dataToObj(items));
       });
@@ -41,6 +41,8 @@ module.exports = (knex) => {
       await knex('users_lists').insert({ user_id, list_id: list_id[0] });
     }
   })
+
+  router
 
   router.get("/auth", (req, res) => {
     const UN = req.body.username;
