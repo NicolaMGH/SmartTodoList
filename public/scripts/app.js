@@ -24,7 +24,7 @@ function createTDL(obj) {
       const $body = $(`<div>
                       <h3>${key}</h3>
                     </div>`);
-      const $list = $(`<ul class="cat"></ul>`)
+      const $list = $(`<ul class=${key}></ul>`)
       obj[key].forEach(item => $list.append(`<li><span class="delete"><i class="fas fa-times"></i></span>${item}</li>`));
       $body.append($list);
       $bodyCon.append($body);
@@ -34,7 +34,6 @@ function createTDL(obj) {
 
   $todo.append(header);
   $todo.append(input);
-  console.log('BODYCON', $bodyCon)
   $todo.append($bodyCon);
 
   sorted();
@@ -53,11 +52,9 @@ function signInButton (){
     $('.login-dropdown').slideUp();
     await $.ajax('/test', {method: 'GET'});
     const data = await $.ajax('/lists/user_lists', {method: 'GET'});
-    data.forEach(obj => {
-      for (let key in obj) {
-        console.log("object",obj)
-        $('section').append(createTDL(obj[key]));
-      }
+    const ids = Object.keys(data);
+    ids.forEach(id => {
+      $('section').append(createTDL(data[id]));
     });
     $('.login-nav').text("Logout");
     $('#new-list').css('opacity', '1');
@@ -101,7 +98,6 @@ function newList () {
       $(".new-list-input").fadeToggle();
       //grabbing new todo text from input
       var todoText = $(this).val();
-      $.ajax('/lists', {method: 'POST', data: todoText})
       $(this).val("");
       //create a new li and add to ul
       const $todo = $("<div>").addClass("lists");
@@ -120,6 +116,8 @@ function newList () {
       $todo.append(input);
       $todo.append($bodyCon);
       $(".todos").prepend($todo)
+      const list = {title: todoText}
+      $.ajax('/lists', { method: 'POST', data: list })
       sorted();
     }
   });

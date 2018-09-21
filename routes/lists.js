@@ -2,34 +2,41 @@
 
 const express = require('express');
 const router = express.Router();
+const massage = require('../helpers/data-massage');
 
 module.exports = (knex) => {
 
   router.get("/", (req, res) => {
     knex
-      .select("list_item")
-      .from("lists")
-      .where("id", 1)
+      .select("item")
+      .from("list_items")
       .then((results) => {
         res.json(results);
       });
   });
 
-  router.get("/user_lists", (req, res) => {
+  // GET todos lists based on session
+  router.get("/user_lists", async (req, res) => {
     knex
-      .select("list_item")
-      .from("lists")
-      .join("users_lists", "list_id", "lists.id")
-      .where("user_id", req.session.id)
-      .then((results) => {
-        res.send(results);
+      .select('lists.id', 'list_items.item', 'list_items.category', 'lists.title')
+      .from('lists')
+      .leftJoin('list_items', 'lists.id', '=', 'list_items.list_id')
+      .join('users_lists', 'users_lists.list_id', '=', 'lists.id')
+      .where('users_lists.user_id', req.session.id)
+      .then(items => {
+        res.send(massage.dataToObj(items));
       });
   });
 
-  router.post('/', (req, res) => {
-    const todo = req.body.data
-    knex()
-    .insert()
+
+  router.post('/', async (req, res) => {
+    const title = req.body.title;
+    const user_id = req.session.id;
+
+    const list_id = await knex('lists').insert({ title }).returning('id');
+    console.log(list_id);
+
+    await knex('users_lists').insert({ user_id, list_id:list_id[0] });
   })
 
   router.get("/auth", (req, res) => {
