@@ -199,9 +199,10 @@ function sorted () {
     dropOnEmpty: true,
     connectWith: $('ul'),
     receive: function(event, ui) {
-      const $listItem = $(ui.item[0]).text();
-      const $catName = $(ui.item[0]).parent().prev().text();
-      $.ajax('/lists', {method: 'PUT', listItem: $listItem, catName: $catName})
+      const listItem = $(ui.item[0]).text();
+      const catName = $(ui.item[0]).parent().prev().text();
+      const listId = $(ui.item[0]).parent().parent().parent().attr('id')
+      $.ajax('/lists', {method: 'PUT', data: { listItem, catName, listId }});
     }
   });
 }

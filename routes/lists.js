@@ -30,8 +30,16 @@ module.exports = (knex) => {
       });
   });
 
-  router.put('/', (req, res) => {
-    console.log(req.body);
+  router.put('/', async (req, res) => {
+
+    const inserted = await knex('list_items')
+      .where({list_id: req.body.listId})
+      .andWhere({item: req.body.listItem})
+      .update({category: req.body.catName.toLowerCase()})
+      .returning('*')
+
+    console.log(inserted);
+    await res.status(200).send();
 
   })
 
