@@ -55,7 +55,7 @@ app.get("/test", (req, res) => {
   req.session.id = 1;
   console.log(req.body, req.session.id);
 
-  res.redirect("/");
+  res.send("ok");
 })
 
 app.get('/analytics', (req, res) => {

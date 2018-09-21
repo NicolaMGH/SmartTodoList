@@ -54,8 +54,12 @@ function createTDL(obj, id) {
   return $todo;
 }
 
-function renderTDL(a) {
-    a.forEach(x => $('.todos').append(createTDL(x)));
+const renderTDL = async () => {
+    const data = await $.ajax('/lists/user_lists', {method: 'GET'});
+    const ids = Object.keys(data);
+    ids.forEach(id => {
+      $('section').append(createTDL(data[id], id));
+    });
 }
 
 
@@ -64,11 +68,7 @@ function signInButton (){
     event.preventDefault();
     $('.login-dropdown').slideUp();
     await $.ajax('/test', {method: 'GET'});
-    const data = await $.ajax('/lists/user_lists', {method: 'GET'});
-    const ids = Object.keys(data);
-    ids.forEach(id => {
-      $('section').append(createTDL(data[id], id));
-    });
+    await renderTDL();
     $('.login-nav').text("Logout");
     $('#new-list').css('opacity', '1');
     $('#new-list').css('display', 'block');
@@ -93,6 +93,8 @@ function loginSlideDown () {
 
 function onLogout () {
   $('.logout').on('click', (event) => {
+    document.location = '/';
+    $.ajax('/logout', {method: 'POST'})
     $('.logout').off('click')
     $('.login-nav').text("Login");
     $('.login-nav').css("margin-top", "28px");
@@ -217,6 +219,7 @@ function sorted () {
 
 
 $(document).ready(function() {
+  renderTDL();
   signInButton();
   newListButton();
   newList();
