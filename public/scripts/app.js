@@ -173,8 +173,8 @@ function deleteTodo () {
   $(document).on("click", ".delete", function(event){
     $(this).parent().fadeOut(500,function(){
       const deletedItem = $(this).text();
-      const delItemId = $(this).parent().parent().parent().attr('id');
-      $.ajax('/lists/item', {method: 'DELETE', data: {deletedItem, delItemId}})
+      const listId = $(this).parent().parent().parent().attr('id');
+      $.ajax('/lists/item', {method: 'DELETE', data: {deletedItem, listId}})
       $(this).remove();
     });
     event.stopPropagation();
@@ -185,8 +185,10 @@ function deleteList () {
   $(document).on("click", ".deleteButton", function(event){
     $(this).closest('.lists').fadeOut(500,function(){
       const listName = $(this).closest('.lists').children().children('h2').text();
-      const lId = $(this).closest('.lists').attr('id');
-      $.ajax('/lists', {method: 'DELETE', data: {listName, lId}})
+      const listId = $(this).closest('.lists').attr('id');
+      console.log(listId);
+
+      $.ajax('/lists', {method: 'DELETE', data: {listName, listId}})
       $(this).closest('.lists').remove();
     });
     event.stopPropagation();
