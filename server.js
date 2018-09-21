@@ -14,6 +14,7 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const cookieSess  = require('cookie-session');
+const massage = require('./helpers/data-massage')
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -54,7 +55,23 @@ app.get("/test", (req, res) => {
   req.session.id = 1;
   console.log(req.body, req.session.id);
 
-  res.redirect("/");
+  res.send("ok");
+})
+
+app.get('/analytics', (req, res) => {
+  res.render('analytics');
+})
+
+app.put('/analytics', async (req, res) => {
+  let data = await knex
+    .select('lists.id', 'list_items.item', 'list_items.category', 'lists.title')
+    .from('lists')
+    .leftJoin('list_items', 'lists.id', '=', 'list_items.list_id')
+    .join('users_lists', 'users_lists.list_id', '=', 'lists.id')
+    .where('users_lists.user_id', req.session.id)
+
+  data = await massage.countItems(data);
+  await res.send(data);
 })
 
 app.listen(PORT, () => {

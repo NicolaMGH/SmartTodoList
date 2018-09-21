@@ -9,40 +9,57 @@
 //   });;
 // });
 
-function createTDL(obj) {
+const INNERTODOLISTS = `<div class="list-dropdown">
+                          <h3>Watch</h3>
+                          <ul class="watch">
+                          </ul>
+                          <h3>Eat</h3>
+                          <ul class="eat">
+                          </ul>
+                          <h3>Buy</h3>
+                          <ul class="buy">
+                          </ul>
+                          <h3>Read</h3>
+                          <ul class="read">
+                          </ul>
+                          <h3>Play</h3>
+                          <ul class="play">
+                          </ul>
+                          <h3>Other</h3>
+                            <ul class="other">
+                          </ul>
+                        </div>`
+
+function createTDL(obj, id) {
   const $todo = $("<div>").addClass("lists");
+  $todo.attr('id', id);
   const header = `<div class="list-title">
                     <span class="deleteButton"><i class="fas fa-trash"></i></span>
                     <h2>${obj.title}</h2>
                     <span class="plus"><i class="fas fa-plus"></i></span>
                   </div>`;
   const input = `<input class="new-todo-input" type="text" placeholder="Add TODO">`
-  const $bodyCon = $("<div>").addClass("list-dropdown");
+  $todo.append(header);
+  $todo.append(input);
+  $todo.append(INNERTODOLISTS);
   for (let key in obj) {
-     console.log(key)
-    if (key !== "title") {
-      const $body = $(`<div>
-                      <h3>${key}</h3>
-                    </div>`);
-      const $list = $(`<ul class=${key}></ul>`)
-      obj[key].forEach(item => $list.append(`<li><span class="delete"><i class="fas fa-times"></i></span>${item}</li>`));
-      $body.append($list);
-      $bodyCon.append($body);
-      console.log(obj.title)
+    if (key !== 'title') {
+      obj[key].forEach(item => $todo.children('.list-dropdown').children(`.${key}`).append(`<li><span class="delete"><i class="fas fa-times"></i></span>${item}</li>`));
     }
   }
 
-  $todo.append(header);
-  $todo.append(input);
-  $todo.append($bodyCon);
 
   sorted();
 
   return $todo;
 }
 
-function renderTDL(a) {
-    a.forEach(x => $('.todos').append(createTDL(x)));
+const renderTDL = async () => {
+    const data = await $.ajax('/lists/user_lists', {method: 'GET'});
+    const ids = Object.keys(data);
+    ids.forEach(id => {
+      $('section').append(createTDL(data[id], id));
+    });
 }
 
 
@@ -51,11 +68,7 @@ function signInButton (){
     event.preventDefault();
     $('.login-dropdown').slideUp();
     await $.ajax('/test', {method: 'GET'});
-    const data = await $.ajax('/lists/user_lists', {method: 'GET'});
-    const ids = Object.keys(data);
-    ids.forEach(id => {
-      $('section').append(createTDL(data[id]));
-    });
+    await renderTDL();
     $('.login-nav').text("Logout");
     $('#new-list').css('opacity', '1');
     $('#new-list').css('display', 'block');
@@ -63,7 +76,11 @@ function signInButton (){
     $('.login-nav').off('click');
     $('.login-nav').css("margin-top", "50px");
 
+    const $username = $('input[type="username"]').val();
+    $('.welcome').css('opacity', '1');
+    $('.name').text(`${$username}`)
     $('input').val('');
+
     onLogout();
   });
 }
@@ -76,10 +93,13 @@ function loginSlideDown () {
 
 function onLogout () {
   $('.logout').on('click', (event) => {
+    document.location = '/';
+    $.ajax('/logout', {method: 'POST'})
     $('.logout').off('click')
     $('.login-nav').text("Login");
     $('.login-nav').css("margin-top", "28px");
     $('#new-list').css('opacity', '0');
+    $('.welcome').css('opacity', '0')
     loginSlideDown();
     $('.login-nav').removeClass("logout");
     $('#new-list').css('display', 'none');
@@ -98,27 +118,28 @@ function newList () {
       $(".new-list-input").fadeToggle();
       //grabbing new todo text from input
       var todoText = $(this).val();
-      $(this).val("");
-      //create a new li and add to ul
-      const $todo = $("<div>").addClass("lists");
-      const header = `<div class="list-title">
-                        <span class="deleteButton"><i class="fas fa-trash"></i></span>
-                        <h2>${todoText}</h2>
-                        <span class="plus"><i class="fas fa-plus"></i></span>
-                      </div>`;
-      const input = `<input class="new-todo-input" type="text" placeholder="Add TODO">`
-      const $body = $(`<div><h3></h3></div>`);
-      const $list = $(`<ul class="cat"></ul>`);
-      const $bodyCon = $("<div>").addClass("list-dropdown");
-      $body.append($list);
-      $bodyCon.append($body);
-      $todo.append(header);
-      $todo.append(input);
-      $todo.append($bodyCon);
-      $(".todos").prepend($todo)
-      const list = {title: todoText}
-      $.ajax('/lists', { method: 'POST', data: list })
-      sorted();
+      if (todoText) {
+
+        $(this).val("");
+        //create a new li and add to ul
+        const $todo = $("<div>").addClass("lists");
+        const header = `<div class="list-title">
+                          <span class="deleteButton"><i class="fas fa-trash"></i></span>
+                          <h2>${todoText}</h2>
+                          <span class="plus"><i class="fas fa-plus"></i></span>
+                        </div>`;
+        const input = `<input class="new-todo-input" type="text" placeholder="Add TODO">`
+
+        $todo.append(header);
+        $todo.append(input);
+        $todo.append(INNERTODOLISTS);
+        sorted();
+        $(".todos").prepend($todo)
+        const list = {title: todoText}
+        $.ajax('/lists', { method: 'POST', data: list })
+      } else {
+        console.log("err")
+      }
     }
   });
 }
@@ -137,14 +158,15 @@ function newTodoPlus () {
 }
 
 function addTodo (){
-  $(document).keypress(".new-todo-input", function(event){
+  $(document).on("keypress", ".new-todo-input", function(event){
     if(event.which === 13){
       $(".new-todo-input").fadeOut();
       var todo = $(this).val();
-      $.ajax('/lists', {method: 'POST', data: todo})
+      const id = $(this).parent().attr("id")
+      $.ajax('/lists/item', {method: 'POST', data: {todo, id}})
       $(this).val("");
       //create a new li and add to ul
-      console.log($(this).siblings().children('.watch').append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`))
+      $(this).siblings().children('.watch').append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`)
     }
   });
 }
@@ -152,6 +174,9 @@ function addTodo (){
 function deleteTodo () {
   $(document).on("click", ".delete", function(event){
     $(this).parent().fadeOut(500,function(){
+      const deletedItem = $(this).text();
+      const listId = $(this).parent().parent().parent().attr('id');
+      $.ajax('/lists/item', {method: 'DELETE', data: {deletedItem, listId}})
       $(this).remove();
     });
     event.stopPropagation();
@@ -161,6 +186,11 @@ function deleteTodo () {
 function deleteList () {
   $(document).on("click", ".deleteButton", function(event){
     $(this).closest('.lists').fadeOut(500,function(){
+      const listName = $(this).closest('.lists').children().children('h2').text();
+      const listId = $(this).closest('.lists').attr('id');
+      console.log(listId);
+
+      $.ajax('/lists', {method: 'DELETE', data: {listName, listId}})
       $(this).closest('.lists').remove();
     });
     event.stopPropagation();
@@ -176,18 +206,22 @@ function listDropdown () {
 
 function sorted () {
   $('ul').sortable({
+    dropOnEmpty: true,
     connectWith: $('ul'),
     receive: function(event, ui) {
-      const $listItem = $(ui.item[0]).text();
-      const $catName = $(ui.item[0]).parent().prev().text();
-      $.ajax('/lists', {method: 'PUT', listItem: $listItem, catName: $catName})
+      const listItem = $(ui.item[0]).text();
+      const catName = $(ui.item[0]).parent().prev().text();
+      const listId = $(ui.item[0]).parent().parent().parent().attr('id')
+      $.ajax('/lists', {method: 'PUT', data: { listItem, catName, listId }});
     }
   });
 }
 
 
 
+
 $(document).ready(function() {
+  renderTDL();
   signInButton();
   newListButton();
   newList();
