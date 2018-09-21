@@ -29,7 +29,12 @@ const renderChart = (data) => {
       title: {
         display: true,
         text: 'My Analytics',
-        fontSize: 20,
+        fontSize: 40,
+      },
+      legend: {
+        labels: {
+        fontSize: 20
+        }
       }
     }
   });

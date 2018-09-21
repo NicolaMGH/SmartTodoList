@@ -52,7 +52,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/test", (req, res) => {
-  req.session.id = 1;
+  req.session.id = 2;
   console.log(req.body, req.session.id);
   res.send("ok");
 })
