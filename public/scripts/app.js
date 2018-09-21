@@ -25,6 +25,9 @@ const INNERTODOLISTS = `<div class="list-dropdown">
                           <h3>Play</h3>
                           <ul class="play">
                           </ul>
+                          <h3>Other</h3>
+                            <ul class="other">
+                          </ul>
                         </div>`
 
 function createTDL(obj, id) {
@@ -181,6 +184,9 @@ function deleteTodo () {
 function deleteList () {
   $(document).on("click", ".deleteButton", function(event){
     $(this).closest('.lists').fadeOut(500,function(){
+      const listName = $(this).closest('.lists').children().children('h2').text();
+      const lId = $(this).closest('.lists').attr('id');
+      $.ajax('/lists', {method: 'DELETE', data: {listName, lId}})
       $(this).closest('.lists').remove();
     });
     event.stopPropagation();
@@ -199,9 +205,9 @@ function sorted () {
     dropOnEmpty: true,
     connectWith: $('ul'),
     receive: function(event, ui) {
-      const $listItem = $(ui.item[0]).text();
-      const $catName = $(ui.item[0]).parent().prev().text();
-      $.ajax('/lists', {method: 'PUT', listItem: $listItem, catName: $catName})
+      const listItem = $(ui.item[0]).text();
+      const catName = $(ui.item[0]).parent().prev().text();
+      $.ajax('/lists', {method: 'PUT', data: {listItem, catName}})
     }
   });
 }
