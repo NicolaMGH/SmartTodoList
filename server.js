@@ -59,18 +59,19 @@ app.get("/test", (req, res) => {
 })
 
 app.get('/analytics', (req, res) => {
-  knex
+  res.render('analytics');
+})
+
+app.put('/analytics', async (req, res) => {
+  let data = await knex
     .select('lists.id', 'list_items.item', 'list_items.category', 'lists.title')
     .from('lists')
     .leftJoin('list_items', 'lists.id', '=', 'list_items.list_id')
     .join('users_lists', 'users_lists.list_id', '=', 'lists.id')
     .where('users_lists.user_id', req.session.id)
-    .then((items) => {
-      const data = massage.countItems(items);
-      console.log(data);
-    })
 
-  res.render('analytics');
+  data = await massage.countItems(data);
+  await res.send(data);
 })
 
 app.listen(PORT, () => {

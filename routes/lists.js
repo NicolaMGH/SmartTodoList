@@ -30,6 +30,10 @@ module.exports = (knex) => {
       });
   });
 
+  router.put('/', (req, res) => {
+    console.log(req.body);
+
+  })
 
   router.post('/', async (req, res) => {
     const title = req.body.title;

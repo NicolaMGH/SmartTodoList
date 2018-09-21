@@ -3,35 +3,23 @@
   <head>
     <title>Smart Todo List</title>
 
-    <script src="/jqueryui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="/jqueryui/external/jquery/jquery.js"></script>
+    <script src="/scripts/analytics.js"></script>
 
   </head>
 
   <body>
-    <canvas id="myChart"></canvas>
+
+
+    <div style="width:500px;height:500px;margin:auto">
+      <canvas id="myChart" width="400px" height="400px"></canvas>
+    </div>
   </body>
 
-  </html>
-
-  <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-      var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'bar',
-
-        // The data for our dataset
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [{
-                label: "My First dataset",
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-            }]
-        },
-
-        // Configuration options go here
-        options: {}
-    });
-  </script>
+</html>

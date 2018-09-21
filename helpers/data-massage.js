@@ -18,9 +18,9 @@ module.exports = {
   countItems: function(arr) {
     const analytics = {};
     arr.forEach((item) => {
-      if (!analytics[item.category]){
+      if (!analytics[item.category] && item.category !== null){
         analytics[item.category] = 1;
-      } else {
+      } else if (item.category !== null) {
         analytics[item.category] += 1;
       }
     })
