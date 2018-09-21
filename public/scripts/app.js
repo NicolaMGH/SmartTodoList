@@ -128,10 +128,10 @@ function newList () {
         $todo.append(header);
         $todo.append(input);
         $todo.append(INNERTODOLISTS);
+        sorted();
         $(".todos").prepend($todo)
         const list = {title: todoText}
         $.ajax('/lists', { method: 'POST', data: list })
-        sorted();
       } else {
         console.log("err")
       }
@@ -169,8 +169,10 @@ function addTodo (){
 function deleteTodo () {
   $(document).on("click", ".delete", function(event){
     $(this).parent().fadeOut(500,function(){
+      const deletedItem = $(this).text();
+      const delItemId = $(this).parent().parent().parent().attr('id');
+      $.ajax('/lists/item', {method: 'DELETE', data: {deletedItem, delItemId}})
       $(this).remove();
-      console.log($(this).parent())
     });
     event.stopPropagation();
   });
@@ -194,6 +196,7 @@ function listDropdown () {
 
 function sorted () {
   $('ul').sortable({
+    dropOnEmpty: true,
     connectWith: $('ul'),
     receive: function(event, ui) {
       const $listItem = $(ui.item[0]).text();
