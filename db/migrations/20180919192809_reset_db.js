@@ -1,9 +1,9 @@
 
 exports.up = function(knex, Promise) {
-  return 
+  return;
 };
 
 exports.down = function(knex, Promise) {
-  return
+  return;
 };
 
