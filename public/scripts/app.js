@@ -207,12 +207,8 @@ function sorted () {
     receive: function(event, ui) {
       const listItem = $(ui.item[0]).text();
       const catName = $(ui.item[0]).parent().prev().text();
-<<<<<<< HEAD
       const listId = $(ui.item[0]).parent().parent().parent().attr('id')
       $.ajax('/lists', {method: 'PUT', data: { listItem, catName, listId }});
-=======
-      $.ajax('/lists', {method: 'PUT', data: {listItem, catName}})
->>>>>>> 4e7fd3b08d06b80484ae9839260557f3e75f66ec
     }
   });
 }
