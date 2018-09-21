@@ -35,10 +35,11 @@ module.exports = (knex) => {
     const title = req.body.title;
     const user_id = req.session.id;
 
-    const list_id = await knex('lists').insert({ title }).returning('id');
-    console.log(list_id);
-
-    await knex('users_lists').insert({ user_id, list_id:list_id[0] });
+    if (title !== null) {
+      const list_id = await knex('lists').insert({ title }).returning('id');
+      console.log(list_id);
+      await knex('users_lists').insert({ user_id, list_id: list_id[0] });
+    }
   })
 
   router.get("/auth", (req, res) => {
