@@ -53,8 +53,16 @@ module.exports = (knex) => {
     if (title !== null) {
       const list_id = await knex('lists').insert({ title }).returning('id');
       console.log(list_id);
-      await knex('users_lists').insert({ user_id, list_id: list_id[0] });
+      await knex('users_lists').insert({ user_id, list_id: list_id[0] })
+      await res.send(list_id);
     }
+  })
+
+  router.post('/item', async (req, res) => {
+    const added = await knex('list_items')
+      .insert({list_id: req.body.id, item: req.body.todo, category: 'play'})
+      .returning('*')
+    await res.send(added);
   })
 
   router.delete('/item', async (req, res) => {
