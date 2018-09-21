@@ -25,9 +25,6 @@ const INNERTODOLISTS = `<div class="list-dropdown">
                           <h3>Play</h3>
                           <ul class="play">
                           </ul>
-                          <h3>Other</h3>
-                            <ul class="other">
-                          </ul>
                         </div>`
 
 function createTDL(obj, id) {
@@ -159,15 +156,15 @@ function newTodoPlus () {
 }
 
 function addTodo (){
-  $(document).on("keypress", ".new-todo-input", function(event){
+  $(document).on("keypress", ".new-todo-input", async function(event){
     if(event.which === 13){
       $(".new-todo-input").fadeOut();
       const todo = $(this).val();
       const id = $(this).parent().attr("id")
-      $.ajax('/lists/item', {method: 'POST', data: {todo, id}})
+      const cat = await $.ajax('/lists/item', {method: 'POST', data: {todo, id}})
       $(this).val("");
       //create a new li and add to ul
-      $(this).siblings().children('.watch').append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`)
+      $(this).siblings().children(`.${cat}`).append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`)
     }
   });
 }

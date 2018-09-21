@@ -1,11 +1,10 @@
 #nav-bar {
   position: fixed;
   height: 80px;
-  background-color: lightblue;
   color: #e8fdff;
   width: 100%;
-  padding: 0em 2em 0em 2em;
-  z-index: 100;
+  padding: 0em 3em 0em 3em;
+  z-index: 0;
   top: 0px;
   display: block;
   text-align: center;
@@ -14,13 +13,13 @@
     float: left;
     font-size: 1.5em;
     line-height: 30px;
-    color: black;
+    color: white;
     text-align: center;
     margin-top: 10px;
   }
 
   #new-list:hover {
-    background-color: lightblue;
+    // background-color: lightblue;
   }
 
   #new-list {
@@ -40,7 +39,7 @@
 
   .login-nav {
     position: absolute;
-    right: 4.3%;
+    right: 3.8%;
     margin-top: 28px;
     border-radius: 5px;
     border:1px solid black;
@@ -58,7 +57,7 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    color: black;
+    color: white;
     opacity: 0;
   }
 
