@@ -25,9 +25,6 @@ const INNERTODOLISTS = `<div class="list-dropdown">
                           <h3>Play</h3>
                           <ul class="play">
                           </ul>
-                          <h3>Other</h3>
-                            <ul class="other">
-                          </ul>
                         </div>`
 
 function createTDL(obj, id) {
