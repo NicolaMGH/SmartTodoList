@@ -110,16 +110,19 @@ function newListButton (){
 }
 
 function newList () {
-    $(".new-list-input").keypress(function(event){
+    $(".new-list-input").keypress(async function(event){
     if(event.which === 13){
       $(".new-list-input").fadeToggle();
       //grabbing new todo text from input
       var todoText = $(this).val();
       if (todoText) {
-
+        const list = {title: todoText}
+        const [ id ] = await $.ajax('/lists', { method: 'POST', data: list })
+        console.log(id);
         $(this).val("");
         //create a new li and add to ul
         const $todo = $("<div>").addClass("lists");
+        $todo.attr('id', id);
         const header = `<div class="list-title">
                           <span class="deleteButton"><i class="fas fa-trash"></i></span>
                           <h2>${todoText}</h2>
@@ -130,10 +133,8 @@ function newList () {
         $todo.append(header);
         $todo.append(input);
         $todo.append(INNERTODOLISTS);
-        sorted();
+        // await sorted();
         $(".todos").prepend($todo)
-        const list = {title: todoText}
-        $.ajax('/lists', { method: 'POST', data: list })
       } else {
         console.log("err")
       }
@@ -155,15 +156,15 @@ function newTodoPlus () {
 }
 
 function addTodo (){
-  $(document).on("keypress", ".new-todo-input", function(event){
+  $(document).on("keypress", ".new-todo-input", async function(event){
     if(event.which === 13){
       $(".new-todo-input").fadeOut();
-      var todo = $(this).val();
+      const todo = $(this).val();
       const id = $(this).parent().attr("id")
-      $.ajax('/lists/item', {method: 'POST', data: {todo, id}})
+      const cat = await $.ajax('/lists/item', {method: 'POST', data: {todo, id}})
       $(this).val("");
       //create a new li and add to ul
-      $(this).siblings().children('.watch').append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`)
+      $(this).siblings().children(`.${cat}`).append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`)
     }
   });
 }

@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const massage = require('../helpers/data-massage');
+const catOf = require('../helpers/paralleldot_API');
 
 module.exports = (knex) => {
 
@@ -53,8 +54,17 @@ module.exports = (knex) => {
     if (title !== null) {
       const list_id = await knex('lists').insert({ title }).returning('id');
       console.log(list_id);
-      await knex('users_lists').insert({ user_id, list_id: list_id[0] });
+      await knex('users_lists').insert({ user_id, list_id: list_id[0] })
+      await res.send(list_id);
     }
+  })
+
+  router.post('/item', async (req, res) => {
+    const category = await catOf(req.body.todo);
+    await knex('list_items')
+      .insert({list_id: req.body.id, item: req.body.todo, category})
+      .returning('*')
+    await res.send(category);
   })
 
   router.delete('/item', async (req, res) => {
