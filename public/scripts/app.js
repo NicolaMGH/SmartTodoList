@@ -137,14 +137,14 @@ function newTodoPlus () {
 }
 
 function addTodo (){
-  $(document).keypress(".new-todo-input", function(event){
+  $(document).on("keypress", ".new-todo-input", function(event){
     if(event.which === 13){
       $(".new-todo-input").fadeOut();
       var todo = $(this).val();
       $.ajax('/lists', {method: 'POST', data: todo})
       $(this).val("");
       //create a new li and add to ul
-      console.log($(this).siblings().children('.watch').append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`))
+      $(this).siblings().children('.watch').append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`)
     }
   });
 }
