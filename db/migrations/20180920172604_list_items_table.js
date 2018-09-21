@@ -1,16 +1,10 @@
 exports.up = function(knex, Promise) {
-
-  knex.schema.table('lists', (table) => {
-    table.dropColumn('list_item');
-  });
+  return;
 
 };
 
 exports.down = function(knex, Promise) {
-
-  knex.schema.table('lists', (table) => {
-    table.json('list_item');
-  });
+  return;
 
 };
 
