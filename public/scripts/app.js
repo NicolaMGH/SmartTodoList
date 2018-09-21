@@ -57,24 +57,11 @@ function signInButton (){
   $('.login-dropdown').on('submit', async (event) => {
     event.preventDefault();
     $('.login-dropdown').slideUp();
-<<<<<<< HEAD
-    $.ajax('/lists/user_lists', {method: 'GET'})
-      .then((data) => {
-        data.forEach(obj => {
-          for (let key in obj) {
-            $('section').append(createTDL(obj[key]));
-          }
-        })
-
-      })
-=======
     await $.ajax('/test', {method: 'GET'});
     const data = await $.ajax('/lists/user_lists', {method: 'GET'});
-    data.forEach(obj => {
-      for (let key in obj) {
-        console.log("object",obj)
-        $('section').append(createTDL(obj[key]));
-      }
+    const ids = Object.keys(data);
+    ids.forEach(id => {
+      $('section').append(createTDL(data[id]));
     });
     $('.login-nav').text("Logout");
     $('#new-list').css('opacity', '1');
@@ -85,7 +72,6 @@ function signInButton (){
 
     $('input').val('');
     onLogout();
->>>>>>> 221c5125f6b13f1214fe90dbd69e66bbc3190182
   });
 }
 
@@ -137,17 +123,14 @@ function newList () {
       $todo.append(input);
       $todo.append($bodyCon);
       $(".todos").prepend($todo)
-<<<<<<< HEAD
       const list = {title: todoText}
       $.ajax('/lists', { method: 'POST', data: list })
-=======
       newTodoPlus();
       deleteTodo();
       addTodo();
       completed();
       deleteList();
       sorted();
->>>>>>> 221c5125f6b13f1214fe90dbd69e66bbc3190182
     }
   });
 }

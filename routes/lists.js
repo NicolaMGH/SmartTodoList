@@ -19,8 +19,8 @@ module.exports = (knex) => {
   router.get("/user_lists", async (req, res) => {
     knex
       .select('lists.id', 'list_items.item', 'list_items.category', 'lists.title')
-      .from('list_items')
-      .join('lists', 'lists.id', '=', 'list_items.list_id')
+      .from('lists')
+      .leftJoin('list_items', 'lists.id', '=', 'list_items.list_id')
       .join('users_lists', 'users_lists.list_id', '=', 'lists.id')
       .where('users_lists.user_id', req.session.id)
       .then(items => {
@@ -29,13 +29,14 @@ module.exports = (knex) => {
   });
 
 
-  router.post('/', (req, res) => {
-    const todo = req.body
-    console.log(todo);
-    const input = Object.keys(todo);
+  router.post('/', async (req, res) => {
+    const title = req.body.title;
+    const user_id = req.session.id;
 
-    knex('lists')
-    .insert()
+    const list_id = await knex('lists').insert({ title }).returning('id');
+    console.log(list_id);
+
+    await knex('users_lists').insert({ user_id, list_id:list_id[0] });
   })
 
   router.get("/auth", (req, res) => {

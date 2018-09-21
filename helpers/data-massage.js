@@ -4,7 +4,9 @@ module.exports = {
     arr.forEach((item) => {
       if (!lists[item.id]) {
         lists[item.id] = { title: item.title };
-        lists[item.id][item.category] = [item.item];
+        if (item.item !== null) {
+          lists[item.id][item.category] = [item.item];
+        }
       } else if (!lists[item.id][item.category]) {
         lists[item.id][item.category] = [item.item];
       } else {
