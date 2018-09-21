@@ -1,0 +1,104 @@
+#nav-bar {
+  position: fixed;
+  height: 80px;
+  color: #e8fdff;
+  width: 100%;
+  padding: 0em 3em 0em 3em;
+  z-index: 0;
+  top: 0px;
+  display: block;
+  text-align: center;
+}
+
+#nav-bar .header {
+  float: left;
+  font-size: 1.5em;
+  line-height: 30px;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+
+#nav-bar #new-list {
+  float: right;
+  margin-top: 5px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: black;
+  border-radius: 10px;
+  border: 0;
+  border: 1px solid black;
+  opacity: 0;
+  display: none;
+}
+
+#nav-bar .login-nav {
+  position: absolute;
+  right: 3.8%;
+  margin-top: 28px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+#nav-bar .login-new-list {
+  float: right;
+}
+
+#nav-bar .welcome {
+  margin-top: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  color: white;
+  opacity: 0;
+}
+
+#nav-bar .name {
+  margin-top: 37px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  color: black;
+}
+
+.login-dropdown {
+  margin-top: 0px;
+  top: 80px;
+  text-align: center;
+  float: right;
+  border: 1px solid black;
+  background-color: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding-bottom: 10px;
+  position: absolute;
+  right: 0;
+  display: none;
+}
+
+.login-dropdown .form-group {
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.login-dropdown .sign-in {
+  margin-top: 5px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.login-dropdown .register {
+  border-radius: 5px;
+}
+
+.newListToggle {
+  opacity: 1;
+}

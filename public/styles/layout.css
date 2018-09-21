@@ -1,0 +1,9 @@
+html body {
+  background-image: url("background.jpg");
+  background-size: 1920px 1080px;
+  font-family: 'Dosis', sans-serif;
+}
+
+html body h1 {
+  color: #244751;
+}

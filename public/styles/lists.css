@@ -1,0 +1,137 @@
+.todos {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  margin-left: 15%;
+  margin-right: 15%;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+  flex-wrap: wrap;
+  padding-bottom: 40px;
+  padding-top: 40px;
+  z-index: 100;
+}
+
+.todos ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  min-height: 5px;
+}
+
+.todos h3 {
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.todos h2 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  padding-right: 5px;
+  padding-left: 20px;
+}
+
+.todos .list-title {
+  color: white;
+  margin: 0;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  display: flex;
+  padding-right: 10px;
+  justify-content: space-around;
+  background-color: #2980b9;
+  z-index: 100;
+}
+
+.todos .plus {
+  color: white;
+  margin-top: 7px;
+  margin-left: 60px;
+  float: right;
+}
+
+.todos .lists {
+  display: block;
+  width: 70%;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  background-color: white;
+}
+
+.todos li {
+  background: #fff;
+  line-height: 180%;
+  color: #666;
+}
+
+.todos li .delete {
+  background: #e74c3c;
+  text-align: center;
+  color: white;
+  display: inline-block;
+  transition: 0.2s linear;
+  float: left;
+  width: 0;
+  opacity: 0;
+}
+
+.todos li:hover .delete {
+  opacity: 1.0;
+  width: 7%;
+}
+
+.todos .new-todo-input {
+  font-size: 15px;
+  background-color: #f7f7f7;
+  width: 90%;
+  padding: 5px 10px 5px 35%;
+  box-sizing: border-box;
+  border: 3px solid transparent;
+  display: none;
+}
+
+.todos .list-dropdown {
+  margin: 25px 0px 25px 0px;
+  display: none;
+  background-color: white;
+}
+
+.todos .deleteButton {
+  color: black;
+  margin-top: 7px;
+  float: left;
+  opacity: 0;
+}
+
+.todos .list-title:hover .deleteButton {
+  opacity: 1;
+  color: white;
+  transition: 0.2s linear;
+}
+
+.todos .list-title:hover {
+  box-shadow: 0px 3px 10px black;
+}
+
+.new-list-input {
+  font-size: 18px;
+  color: #2980b9;
+  background-color: #f7f7f7;
+  width: 55%;
+  padding: 13px 13px 13px 20px;
+  box-sizing: border-box;
+  border: 3px solid transparent;
+  margin-bottom: 15px;
+  margin-left: 7px;
+  display: none;
+  border-radius: 5px;
+}
+
+.completed {
+  color: gray;
+  text-decoration: line-through;
+}

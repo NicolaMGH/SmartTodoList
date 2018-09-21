@@ -100,6 +100,7 @@ function onLogout () {
     loginSlideDown();
     $('.login-nav').removeClass("logout");
     $('#new-list').css('display', 'none');
+    $('.todos').fadeToggle();
   })
 }
 
