@@ -54,7 +54,6 @@ app.get("/", (req, res) => {
 app.get("/test", (req, res) => {
   req.session.id = 1;
   console.log(req.body, req.session.id);
-
   res.send("ok");
 })
 
@@ -72,6 +71,11 @@ app.put('/analytics', async (req, res) => {
 
   data = await massage.countItems(data);
   await res.send(data);
+})
+
+app.post('/logout', (req, res) => {
+  req.session = null;
+  res.send('ok');
 })
 
 app.listen(PORT, () => {
