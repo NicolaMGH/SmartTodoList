@@ -37,12 +37,6 @@ function createTDL(obj) {
   console.log('BODYCON', $bodyCon)
   $todo.append($bodyCon);
 
-  newTodoPlus();
-  deleteTodo();
-  addTodo();
-  completed();
-  console.log('adding list?');
-  deleteList();
   sorted();
 
   return $todo;
@@ -126,44 +120,39 @@ function newList () {
       $todo.append(input);
       $todo.append($bodyCon);
       $(".todos").prepend($todo)
-      newTodoPlus();
-      deleteTodo();
-      addTodo();
-      completed();
-      deleteList();
       sorted();
     }
   });
 }
 
 function completed () {
-    $("ul").on("click", "li", function(){
+    $(document).on("click", "li", function(){
       $(this).toggleClass("completed");
   });
 }
 
 function newTodoPlus () {
-  $('.fa-plus').on('click', (e) => {
+  $(document).on('click', '.fa-plus', (e) => {
     e.stopPropagation();
     $(e.target).parent().parent().next('.new-todo-input').fadeToggle();
   })
 }
 
 function addTodo (){
-  $(".new-todo-input").keypress(function(event){
+  $(document).keypress(".new-todo-input", function(event){
     if(event.which === 13){
       $(".new-todo-input").fadeOut();
       var todo = $(this).val();
       $.ajax('/lists', {method: 'POST', data: todo})
       $(this).val("");
       //create a new li and add to ul
-      $(this).siblings().children('.watch').append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`)
+      console.log($(this).siblings().children('.watch').append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`))
     }
   });
 }
 
 function deleteTodo () {
-  $("ul").on("click", ".delete", function(event){
+  $(document).on("click", ".delete", function(event){
     $(this).parent().fadeOut(500,function(){
       $(this).remove();
     });
@@ -172,7 +161,7 @@ function deleteTodo () {
 }
 
 function deleteList () {
-  $("div").on("click", ".deleteButton", function(event){
+  $(document).on("click", ".deleteButton", function(event){
     $(this).closest('.lists').fadeOut(500,function(){
       $(this).closest('.lists').remove();
     });
