@@ -1,9 +1,9 @@
 function signInButton (){
   $('.login-dropdown').on('submit', async (event) => {
     event.preventDefault();
-    $('.login-dropdown').fadeToggle();
-    await $.ajax('/login', {method: 'GET'});
-    // $('input').val('');
+    const username = $('input[type="username"]').val();
+    const password = $('input[type="password"]').val();
+    await $.ajax('/login', {method: 'GET', data: username, password});
     document.location = '/'
   });
 }
