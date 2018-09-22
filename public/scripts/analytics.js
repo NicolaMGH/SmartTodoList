@@ -1,5 +1,8 @@
 $(document).ready(() => {
-  docclick();
+  $.ajax('/analytics', { method: 'PUT' })
+    .then((data) => {
+      renderChart(data);
+    })
 });
 
 const renderChart = (data) => {
@@ -42,12 +45,8 @@ const renderChart = (data) => {
 }
 
 const docclick = () => {
-  $(document).on('click', (e) => {
-    $.ajax('/analytics', { method: 'PUT' })
-    .then((data) => {
-      console.log(data);
-
-      renderChart(data);
-    })
+  $.ajax('/analytics', { method: 'PUT' })
+  .then((data) => {
+    renderChart(data);
   })
 }

@@ -55,10 +55,23 @@ app.get("/", (req, res) => {
   }
 });
 
-app.get("/login", (req, res) => {
-  req.session.id = 1;
-  console.log(req.body, req.session.id);
-  res.send("ok");
+app.put("/login", async (req, res) => {
+  const user = req.body.username;
+  console.log(req.body);
+
+  try {
+    const id = await knex('users')
+      .select('id')
+      .where('username', user);
+    if (id[0].id) {
+      req.session.id = id[0].id;
+      res.send(true);
+    } else {
+      res.send(false);
+    }
+  } catch (error) {
+    res.send(false);
+  }
 })
 
 app.get('/analytics', (req, res) => {
