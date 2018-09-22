@@ -78,6 +78,22 @@ app.get('/analytics', (req, res) => {
   res.render('analytics');
 })
 
+app.put('/share', async (req, res) => {
+  const listid = req.body.listid;
+  const user = req.body.username;
+  try {
+    const userid = await knex('users')
+      .select('id')
+      .where('username', user)
+    const insert = await knex('users_lists')
+      .insert({user_id: userid, list_id: listid})
+      .returning('*');
+      res.send(insert);
+  } catch (err) {
+    res.send(err);
+  }
+})
+
 
 app.put('/analytics', async (req, res) => {
   let data = await knex
