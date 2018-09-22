@@ -63,18 +63,20 @@ const renderTDL = async () => {
 function signInButton (){
   $('.login-dropdown').on('submit', async (event) => {
     event.preventDefault();
-    $('.login-dropdown').slideUp();
+    $('.login-dropdown').fadeToggle();
     await $.ajax('/test', {method: 'GET'});
     await renderTDL();
+    $('.todos').animate({opacity: 1},{duration: 2500}
+    )
     $('.login-nav').text("Logout");
-    $('#new-list').css('opacity', '1');
+    $('#new-list').animate({opacity: 1},{duration: 3000}
+    )
+    // $('#new-list').css('opacity', '1');
     $('#new-list').css('display', 'block');
     $('.login-nav').addClass('logout');
     $('.login-nav').off('click');
-    $('.login-nav').css("margin-top", "50px");
 
     const $username = $('input[type="username"]').val();
-    $('.welcome').css('opacity', '1');
     $('.name').text(`${$username}`)
     $('input').val('');
 
@@ -84,7 +86,7 @@ function signInButton (){
 
 function loginSlideDown () {
   $('.login-nav').on('click', (event) => {
-    $('.login-dropdown').slideToggle();
+    $('.login-dropdown').fadeToggle();
   })
 }
 
@@ -94,7 +96,6 @@ function onLogout () {
     $.ajax('/logout', {method: 'POST'})
     $('.logout').off('click')
     $('.login-nav').text("Login");
-    $('.login-nav').css("margin-top", "28px");
     $('#new-list').css('opacity', '0');
     $('.welcome').css('opacity', '0')
     loginSlideDown();
@@ -204,16 +205,18 @@ function listDropdown () {
 }
 
 function sorted () {
-  $('ul').sortable({
-    dropOnEmpty: true,
-    connectWith: $('ul'),
-    receive: function(event, ui) {
-      const listItem = $(ui.item[0]).text();
-      const catName = $(ui.item[0]).parent().prev().text();
-      const listId = $(ui.item[0]).parent().parent().parent().attr('id')
-      $.ajax('/lists', {method: 'PUT', data: { listItem, catName, listId }});
-    }
-  });
+  $(document).on("click", (event)=>{
+    $('ul').sortable({
+      dropOnEmpty: true,
+      connectWith: $('ul'),
+      receive: function(event, ui) {
+        const listItem = $(ui.item[0]).text();
+        const catName = $(ui.item[0]).parent().prev().text();
+        const listId = $(ui.item[0]).parent().parent().parent().attr('id')
+        $.ajax('/lists', {method: 'PUT', data: { listItem, catName, listId }});
+      }
+    });
+  })
 }
 
 
