@@ -212,6 +212,11 @@ function sorted () {
   })
 }
 
+function analytics () {
+  $('#analytics').on('click', (event) => {
+    document.location = '/analytics'
+  })
+}
 
 
 
@@ -229,4 +234,5 @@ $(document).ready(function() {
   deleteList();
   sorted();
   onLogout();
+  analytics();
 });
