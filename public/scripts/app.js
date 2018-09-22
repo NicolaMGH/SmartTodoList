@@ -63,18 +63,22 @@ const renderTDL = async () => {
 function signInButton (){
   $('.login-dropdown').on('submit', async (event) => {
     event.preventDefault();
-    $('.login-dropdown').slideUp();
+    $('.login-dropdown').fadeToggle();
     await $.ajax('/test', {method: 'GET'});
     await renderTDL();
+    $('.todos').animate({opacity: 1},{duration: 2000}
+    )
     $('.login-nav').text("Logout");
-    $('#new-list').css('opacity', '1');
+    $('#new-list').animate({opacity: 1},{duration: 1500}
+    )
+    $('.background').animate({opacity: 1},{duration: 1500}
+    )
+    // $('#new-list').css('opacity', '1');
     $('#new-list').css('display', 'block');
     $('.login-nav').addClass('logout');
     $('.login-nav').off('click');
-    $('.login-nav').css("margin-top", "50px");
 
     const $username = $('input[type="username"]').val();
-    $('.welcome').css('opacity', '1');
     $('.name').text(`${$username}`)
     $('input').val('');
 
@@ -84,7 +88,7 @@ function signInButton (){
 
 function loginSlideDown () {
   $('.login-nav').on('click', (event) => {
-    $('.login-dropdown').slideToggle();
+    $('.login-dropdown').fadeToggle();
   })
 }
 
@@ -94,8 +98,8 @@ function onLogout () {
     $.ajax('/logout', {method: 'POST'})
     $('.logout').off('click')
     $('.login-nav').text("Login");
-    $('.login-nav').css("margin-top", "28px");
     $('#new-list').css('opacity', '0');
+    $('.background').css('opacity', '0');
     $('.welcome').css('opacity', '0')
     loginSlideDown();
     $('.login-nav').removeClass("logout");
@@ -119,7 +123,6 @@ function newList () {
       if (todoText) {
         const list = {title: todoText}
         const [ id ] = await $.ajax('/lists', { method: 'POST', data: list })
-        console.log(id);
         $(this).val("");
         //create a new li and add to ul
         const $todo = $("<div>").addClass("lists");
@@ -164,8 +167,9 @@ function addTodo (){
       const id = $(this).parent().attr("id")
       const cat = await $.ajax('/lists/item', {method: 'POST', data: {todo, id}})
       $(this).val("");
+      console.log($(this).siblings().children())
       //create a new li and add to ul
-      $(this).siblings().children(`.${cat}`).append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`)
+      $(this).siblings().children(`.${cat}`).append(`<li class="highlight"><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`)
     }
   });
 }
@@ -187,7 +191,6 @@ function deleteList () {
     $(this).closest('.lists').fadeOut(500,function(){
       const listName = $(this).closest('.lists').children().children('h2').text();
       const listId = $(this).closest('.lists').attr('id');
-      console.log(listId);
 
       $.ajax('/lists', {method: 'DELETE', data: {listName, listId}})
       $(this).closest('.lists').remove();
@@ -204,16 +207,18 @@ function listDropdown () {
 }
 
 function sorted () {
-  $('ul').sortable({
-    dropOnEmpty: true,
-    connectWith: $('ul'),
-    receive: function(event, ui) {
-      const listItem = $(ui.item[0]).text();
-      const catName = $(ui.item[0]).parent().prev().text();
-      const listId = $(ui.item[0]).parent().parent().parent().attr('id')
-      $.ajax('/lists', {method: 'PUT', data: { listItem, catName, listId }});
-    }
-  });
+  $(document).on("click", (event)=>{
+    $('ul').sortable({
+      dropOnEmpty: true,
+      connectWith: $('ul'),
+      receive: function(event, ui) {
+        const listItem = $(ui.item[0]).text();
+        const catName = $(ui.item[0]).parent().prev().text();
+        const listId = $(ui.item[0]).parent().parent().parent().attr('id')
+        $.ajax('/lists', {method: 'PUT', data: { listItem, catName, listId }});
+      }
+    });
+  })
 }
 
 
