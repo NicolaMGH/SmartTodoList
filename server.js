@@ -51,7 +51,7 @@ app.get("/", (req, res) => {
   if (req.session.id) {
     res.render("index");
   } else {
-    res.render("login")
+    res.render("login");
   }
 });
 
