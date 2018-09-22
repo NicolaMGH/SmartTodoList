@@ -125,12 +125,11 @@
   display: none;
   border-radius: 50px;
   margin-left: 22%;
-
 }
 
 .new-list-input input[placeholder] {
-    text-align: center;
-  }
+  text-align: center;
+}
 
 .completed {
   color: gray;
