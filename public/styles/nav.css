@@ -31,7 +31,7 @@
   border-radius: 10px;
   border: 0;
   border: 1px solid black;
-  margin-right: 3.5%;
+  margin-right: 25%;
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -77,4 +77,33 @@
 
 .newListToggle {
   opacity: 1;
+}
+
+#right-nav {
+  position: fixed;
+  height: 100%;
+  color: #e8fdff;
+  width: 15%;
+  padding: 0em 1em 0em 25px;
+  z-index: 0;
+  top: 0px;
+  display: block;
+  text-align: center;
+  right: 0;
+}
+
+#analytics {
+  float: right;
+  margin-top: 10%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: white;
+  border-radius: 10px;
+  border: 0;
+  border: 1px solid black;
+  margin-right: 13%;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
 }
