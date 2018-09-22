@@ -219,9 +219,7 @@ function analytics () {
 }
 
 function fadedHome (){
-    window.onload = function (){
-        $('.todos').animate({opacity: 1},{duration: 1000})
-    }
+  $('.todos').animate({opacity: 1},{duration: 1000})
 }
 
 $(document).ready(function() {
