@@ -80,7 +80,7 @@ function signInButton (){
 
     const $username = $('input[type="username"]').val();
     $('.name').text(`${$username}`)
-    $('input').val('');
+    // $('input').val('');
 
     onLogout();
   });
