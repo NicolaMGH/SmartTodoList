@@ -93,9 +93,9 @@ function loginSlideDown () {
 }
 
 function onLogout () {
-  $('#logout').on('click', (event) => {
-    $.ajax('/logout', {method: 'POST'})
-    document.location = '/'
+  $('#logout').on('click', async (event) => {
+    await $.ajax('/logout', {method: 'POST'});
+    document.location = '/';
   })
 }
 
@@ -218,7 +218,11 @@ function analytics () {
   })
 }
 
-
+function fadedHome (){
+    window.onload = function (){
+        $('.todos').animate({opacity: 1},{duration: 1000})
+    }
+}
 
 $(document).ready(function() {
   renderTDL();
@@ -235,4 +239,5 @@ $(document).ready(function() {
   sorted();
   onLogout();
   analytics();
+  fadedHome();
 });

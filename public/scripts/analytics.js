@@ -1,9 +1,17 @@
+function home () {
+  $('#home').on('click', () => {
+    document.location = '/'
+  })
+}
+
 $(document).ready(() => {
   $.ajax('/analytics', { method: 'PUT' })
     .then((data) => {
       renderChart(data);
     })
+home();
 });
+
 
 const renderChart = (data) => {
 
