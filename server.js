@@ -61,6 +61,10 @@ app.get('/analytics', (req, res) => {
   res.render('analytics');
 })
 
+app.get('/login', (req, res) => {
+  res.render('login');
+})
+
 app.put('/analytics', async (req, res) => {
   let data = await knex
     .select('lists.id', 'list_items.item', 'list_items.category', 'lists.title')

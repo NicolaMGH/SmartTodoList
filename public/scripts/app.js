@@ -94,17 +94,7 @@ function loginSlideDown () {
 
 function onLogout () {
   $('.logout').on('click', (event) => {
-    document.location = '/';
     $.ajax('/logout', {method: 'POST'})
-    $('.logout').off('click')
-    $('.login-nav').text("Login");
-    $('#new-list').css('opacity', '0');
-    $('.background').css('opacity', '0');
-    $('.welcome').css('opacity', '0')
-    loginSlideDown();
-    $('.login-nav').removeClass("logout");
-    $('#new-list').css('display', 'none');
-    $('.todos').fadeToggle();
   })
 }
 
