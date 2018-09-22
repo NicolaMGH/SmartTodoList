@@ -59,3 +59,14 @@ html body h1 {
 .register {
   border:1px solid black;
 }
+
+.background {
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: block;
+  min-height: 100vh;
+  margin-left: 15%;
+  margin-right: 15%;
+  flex-wrap: wrap;
+  opacity: 0;
+}

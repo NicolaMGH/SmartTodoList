@@ -71,6 +71,8 @@ function signInButton (){
     $('.login-nav').text("Logout");
     $('#new-list').animate({opacity: 1},{duration: 3000}
     )
+    $('.background').animate({opacity: 1},{duration: 3000}
+    )
     // $('#new-list').css('opacity', '1');
     $('#new-list').css('display', 'block');
     $('.login-nav').addClass('logout');
@@ -97,6 +99,7 @@ function onLogout () {
     $('.logout').off('click')
     $('.login-nav').text("Login");
     $('#new-list').css('opacity', '0');
+    $('.background').css('opacity', '0');
     $('.welcome').css('opacity', '0')
     loginSlideDown();
     $('.login-nav').removeClass("logout");
