@@ -13,7 +13,7 @@ html body h1 {
   text-align: center;
   border: 1px solid black;
   border-radius: 10px;
-  margin-top: 18%;
+  margin-top: 8%;
   margin-left: 35%;
   margin-right: 35%;
   padding-bottom: 5%;
@@ -22,6 +22,7 @@ html body h1 {
   padding-right: 25px;
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
+  opacity: 0;
 }
 
 .login-dropdown h3 {
@@ -69,7 +70,6 @@ html body h1 {
   margin-left: 15%;
   margin-right: 15%;
   flex-wrap: wrap;
-  opacity: 0;
 }
 
 .fa-user {
@@ -84,4 +84,17 @@ html body h1 {
   font-size: 22px;
   margin-right: 5%;
   color: #20298f;
+}
+
+.login-header {
+  color: white;
+  text-align: center;
+  font-size: 150px;
+  opacity: 0;
+}
+
+.login-text {
+  color: white;
+  text-align: center;
+  opacity: 0;
 }

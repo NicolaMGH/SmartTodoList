@@ -80,7 +80,7 @@ function signInButton (){
 
     const $username = $('input[type="username"]').val();
     $('.name').text(`${$username}`)
-    $('input').val('');
+    // $('input').val('');
 
     onLogout();
   });
@@ -93,18 +93,9 @@ function loginSlideDown () {
 }
 
 function onLogout () {
-  $('.logout').on('click', (event) => {
-    document.location = '/';
+  $('#logout').on('click', (event) => {
     $.ajax('/logout', {method: 'POST'})
-    $('.logout').off('click')
-    $('.login-nav').text("Login");
-    $('#new-list').css('opacity', '0');
-    $('.background').css('opacity', '0');
-    $('.welcome').css('opacity', '0')
-    loginSlideDown();
-    $('.login-nav').removeClass("logout");
-    $('#new-list').css('display', 'none');
-    $('.todos').fadeToggle();
+    document.location = '/'
   })
 }
 
@@ -237,4 +228,5 @@ $(document).ready(function() {
   listDropdown();
   deleteList();
   sorted();
+  onLogout();
 });
