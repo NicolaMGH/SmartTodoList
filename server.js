@@ -55,8 +55,12 @@ app.get("/", (req, res) => {
   }
 });
 
-app.get("/login", (req, res) => {
-  req.session.id = 1;
+app.get("/login", async (req, res) => {
+  const user = req.body.username;
+  const id = await knex('users')
+    .select('id')
+    .where('username', user);
+  [ req.session.id ] = id;
   console.log(req.body, req.session.id);
   res.send("ok");
 })
