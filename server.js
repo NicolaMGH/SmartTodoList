@@ -55,7 +55,7 @@ app.get("/", (req, res) => {
   }
 });
 
-app.get("/test", (req, res) => {
+app.get("/login", (req, res) => {
   req.session.id = 1;
   console.log(req.body, req.session.id);
   res.send("ok");
@@ -65,9 +65,6 @@ app.get('/analytics', (req, res) => {
   res.render('analytics');
 })
 
-app.get('/login', (req, res) => {
-  res.render('login');
-})
 
 app.put('/analytics', async (req, res) => {
   let data = await knex
