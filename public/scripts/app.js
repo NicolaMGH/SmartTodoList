@@ -95,6 +95,7 @@ function loginSlideDown () {
 function onLogout () {
   $('#logout').on('click', (event) => {
     $.ajax('/logout', {method: 'POST'})
+    document.location = '/'
   })
 }
 
@@ -227,4 +228,5 @@ $(document).ready(function() {
   listDropdown();
   deleteList();
   sorted();
+  onLogout();
 });
