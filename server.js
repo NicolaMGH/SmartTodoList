@@ -80,7 +80,7 @@ app.put('/analytics', async (req, res) => {
 
 app.post('/logout', (req, res) => {
   req.session = null;
-  res.send('ok');
+  res.render('login');
 })
 
 app.listen(PORT, () => {
