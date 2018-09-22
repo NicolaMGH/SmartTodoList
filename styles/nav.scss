@@ -3,7 +3,6 @@
   height: 100%;
   color: #e8fdff;
   width: 15%;
-  padding: 0em 3em 0em 25px;
   z-index: 0;
   top: 0px;
   display: block;
@@ -16,8 +15,10 @@
   line-height: 30px;
   color: white;
   text-align: center;
-  margin-top: 10px;
-  margin-left: 25%
+  margin-top: 15px;
+  margin-left: 15%;
+  padding-left: 10px;
+  font-size: 35px;
 }
 
 #new-list {
@@ -31,7 +32,7 @@
   border-radius: 10px;
   border: 0;
   border: 1px solid black;
-  margin-right: 25%;
+  margin-right: 20%;
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -65,14 +66,14 @@
 }
 
 #nav-bar .name {
-  margin-top: 37px;
+  margin-top: 25%;
   text-align: center;
   display: flex;
   justify-content: center;
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  color: black;
+  color: white;
 }
 
 .newListToggle {
@@ -106,4 +107,29 @@
   margin-right: 13%;
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+#home {
+  float: right;
+  margin-top: 3%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: white;
+  border-radius: 10px;
+  border: 0;
+  border: 1px solid black;
+  margin-right: 20%;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.shareForm {
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+
 }

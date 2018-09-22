@@ -5,6 +5,7 @@
   height: 100%;
   flex-wrap: wrap;
   z-index: 100;
+  opacity: 0;
 }
 
 .todos ul {
@@ -42,9 +43,10 @@
 
 .todos .plus {
   color: white;
-  margin-top: 7px;
+  margin-top: 2px;
   margin-left: 60px;
   float: right;
+  font-size:30px;
 }
 
 .todos .lists {
@@ -99,10 +101,26 @@
   color: black;
   margin-top: 7px;
   float: left;
+  font-size: 20px;
+  opacity: 0;
+  margin-right: 20px;
+}
+
+.todos .share {
+  color: black;
+  margin-top: 7px;
+  float: left;
+  font-size: 20px;
   opacity: 0;
 }
 
 .todos .list-title:hover .deleteButton {
+  opacity: 1;
+  color: white;
+  transition: 0.2s linear;
+}
+
+.todos .list-title:hover .share {
   opacity: 1;
   color: white;
   transition: 0.2s linear;

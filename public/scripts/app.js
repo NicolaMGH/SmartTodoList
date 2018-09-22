@@ -27,11 +27,16 @@ const INNERTODOLISTS = `<div class="list-dropdown">
                           </ul>
                         </div>`
 
+const CURRENTLIST;
+
 function createTDL(obj, id) {
   const $todo = $("<div>").addClass("lists");
   $todo.attr('id', id);
   const header = `<div class="list-title">
-                    <span class="deleteButton"><i class="fas fa-trash"></i></span>
+                    <div>
+                      <span class="deleteButton"><i class="fas fa-trash"></i></span>
+                      <span class="share"><i class="fas fa-share"></i></span>
+                    </div>
                     <h2>${obj.title}</h2>
                     <span class="plus"><i class="fas fa-plus"></i></span>
                   </div>`;
@@ -93,9 +98,9 @@ function loginSlideDown () {
 }
 
 function onLogout () {
-  $('#logout').on('click', (event) => {
-    $.ajax('/logout', {method: 'POST'})
-    document.location = '/'
+  $('#logout').on('click', async (event) => {
+    await $.ajax('/logout', {method: 'POST'});
+    document.location = '/';
   })
 }
 
@@ -119,7 +124,10 @@ function newList () {
         const $todo = $("<div>").addClass("lists");
         $todo.attr('id', id);
         const header = `<div class="list-title">
-                          <span class="deleteButton"><i class="fas fa-trash"></i></span>
+                          <div>
+                            <span class="deleteButton"><i class="fas fa-trash"></i></span>
+                            <span class="share"><i class="fas fa-share"></i></span>
+                          </div>
                           <h2>${todoText}</h2>
                           <span class="plus"><i class="fas fa-plus"></i></span>
                         </div>`;
@@ -218,7 +226,19 @@ function analytics () {
   })
 }
 
+function fadedHome (){
+  $('.todos').animate({opacity: 1},{duration: 1000})
+}
 
+function shareList () {
+  $(document).on("click", ".share", function(event){
+      const listId = $(this).closest('.lists').attr('id');
+      CURRENTLIST = listId;
+
+      $.ajax('/share', {method: 'PUT', data: CURRENTLIST})
+    event.stopPropagation();
+  });
+}
 
 $(document).ready(function() {
   renderTDL();
@@ -235,4 +255,6 @@ $(document).ready(function() {
   sorted();
   onLogout();
   analytics();
+  fadedHome();
+  shareList();
 });
