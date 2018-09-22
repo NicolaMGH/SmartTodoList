@@ -27,7 +27,7 @@ const INNERTODOLISTS = `<div class="list-dropdown">
                           </ul>
                         </div>`
 
-const CURRENTLIST;
+let CURRENTLIST = 0;
 
 function createTDL(obj, id) {
   const $todo = $("<div>").addClass("lists");
