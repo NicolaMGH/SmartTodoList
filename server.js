@@ -48,10 +48,14 @@ app.use("/lists", listsRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  if (req.session.id) {
+    res.render("index");
+  } else {
+    res.render("login");
+  }
 });
 
-app.get("/test", (req, res) => {
+app.get("/login", (req, res) => {
   req.session.id = 1;
   console.log(req.body, req.session.id);
   res.send("ok");
@@ -60,6 +64,7 @@ app.get("/test", (req, res) => {
 app.get('/analytics', (req, res) => {
   res.render('analytics');
 })
+
 
 app.put('/analytics', async (req, res) => {
   let data = await knex

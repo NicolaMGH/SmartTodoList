@@ -30,6 +30,7 @@ const renderChart = (data) => {
         display: true,
         text: 'My Analytics',
         fontSize: 40,
+        fontColor: 'white'
       },
       legend: {
         labels: {
