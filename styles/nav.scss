@@ -3,7 +3,6 @@
   height: 100%;
   color: #e8fdff;
   width: 15%;
-  padding: 0em 3em 0em 25px;
   z-index: 0;
   top: 0px;
   display: block;
@@ -16,8 +15,10 @@
   line-height: 30px;
   color: white;
   text-align: center;
-  margin-top: 10px;
-  margin-left: 25%
+  margin-top: 15px;
+  margin-left: 15%;
+  padding-left: 10px;
+  font-size: 35px;
 }
 
 #new-list {
@@ -65,14 +66,14 @@
 }
 
 #nav-bar .name {
-  margin-top: 37px;
+  margin-top: 25%;
   text-align: center;
   display: flex;
   justify-content: center;
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  color: black;
+  color: white;
 }
 
 .newListToggle {
