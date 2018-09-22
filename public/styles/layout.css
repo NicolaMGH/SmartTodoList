@@ -13,11 +13,12 @@ html body h1 {
   border: 1px solid black;
   border-radius: 10px;
   margin-top: 18%;
-  margin-left: 28%;
-  margin-right: 28%;
+  margin-left: 35%;
+  margin-right: 35%;
   padding-bottom: 5%;
   border-top-width: 5%;
   padding-top: 3%;
+  padding-right: 25px;
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -43,7 +44,7 @@ html body h1 {
 
 .login-dropdown input {
   width: 75%;
-  border-radius: 50px;
+  border-radius: 5px;
   border: 1px solid black;
 }
 
@@ -68,4 +69,18 @@ html body h1 {
   margin-right: 15%;
   flex-wrap: wrap;
   opacity: 0;
+}
+
+.fa-user {
+  width: 5%;
+  font-size: 22px;
+  margin-right: 5%;
+  color: #20298f;
+}
+
+.fa-lock {
+  width: 5%;
+  font-size: 22px;
+  margin-right: 5%;
+  color: #20298f;
 }

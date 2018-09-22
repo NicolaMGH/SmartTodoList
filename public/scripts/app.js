@@ -66,12 +66,12 @@ function signInButton (){
     $('.login-dropdown').fadeToggle();
     await $.ajax('/test', {method: 'GET'});
     await renderTDL();
-    $('.todos').animate({opacity: 1},{duration: 2500}
+    $('.todos').animate({opacity: 1},{duration: 2000}
     )
     $('.login-nav').text("Logout");
-    $('#new-list').animate({opacity: 1},{duration: 3000}
+    $('#new-list').animate({opacity: 1},{duration: 1500}
     )
-    $('.background').animate({opacity: 1},{duration: 3000}
+    $('.background').animate({opacity: 1},{duration: 1500}
     )
     // $('#new-list').css('opacity', '1');
     $('#new-list').css('display', 'block');
