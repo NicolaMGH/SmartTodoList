@@ -48,7 +48,11 @@ app.use("/lists", listsRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  if (req.session.id) {
+    res.render("index");
+  } else {
+    res.render("login")
+  }
 });
 
 app.get("/test", (req, res) => {
