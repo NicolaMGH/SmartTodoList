@@ -93,7 +93,7 @@ function loginSlideDown () {
 }
 
 function onLogout () {
-  $('.logout').on('click', (event) => {
+  $('#logout').on('click', (event) => {
     $.ajax('/logout', {method: 'POST'})
   })
 }
