@@ -123,7 +123,6 @@ function newList () {
       if (todoText) {
         const list = {title: todoText}
         const [ id ] = await $.ajax('/lists', { method: 'POST', data: list })
-        console.log(id);
         $(this).val("");
         //create a new li and add to ul
         const $todo = $("<div>").addClass("lists");
@@ -168,8 +167,9 @@ function addTodo (){
       const id = $(this).parent().attr("id")
       const cat = await $.ajax('/lists/item', {method: 'POST', data: {todo, id}})
       $(this).val("");
+      console.log($(this).siblings().children())
       //create a new li and add to ul
-      $(this).siblings().children(`.${cat}`).append(`<li><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`)
+      $(this).siblings().children(`.${cat}`).append(`<li class="highlight"><span class="delete"><i class="fas fa-times"></i></span>${todo}</li>`)
     }
   });
 }
@@ -191,7 +191,6 @@ function deleteList () {
     $(this).closest('.lists').fadeOut(500,function(){
       const listName = $(this).closest('.lists').children().children('h2').text();
       const listId = $(this).closest('.lists').attr('id');
-      console.log(listId);
 
       $.ajax('/lists', {method: 'DELETE', data: {listName, listId}})
       $(this).closest('.lists').remove();
