@@ -30,6 +30,7 @@ function faded(e) {
   $('.login-text').animate({ opacity: 1 }, { duration: 1500 })
 }
 
+
 $(document).ready(function() {
   register();
   faded();
