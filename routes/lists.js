@@ -17,7 +17,7 @@ module.exports = (knex) => {
   });
 
   // GET todos lists based on session
-  router.get("/user_lists", async (req, res) => {
+  router.get("/user_lists", async(req, res) => {
     if (req.session.id) {
       knex
         .select('lists.id', 'list_items.item', 'list_items.category', 'lists.title')
@@ -28,18 +28,18 @@ module.exports = (knex) => {
         .then(items => {
           console.log(massage.dataToObj(items));
           res.send(massage.dataToObj(items));
-      });
+        });
     } else {
       res.send();
     }
   });
 
-  router.put('/', async (req, res) => {
+  router.put('/', async(req, res) => {
 
     const inserted = await knex('list_items')
-      .where({list_id: req.body.listId})
-      .andWhere({item: req.body.listItem})
-      .update({category: req.body.catName.toLowerCase()})
+      .where({ list_id: req.body.listId })
+      .andWhere({ item: req.body.listItem })
+      .update({ category: req.body.catName.toLowerCase() })
       .returning('*')
 
     console.log(inserted);
@@ -47,7 +47,7 @@ module.exports = (knex) => {
 
   })
 
-  router.post('/', async (req, res) => {
+  router.post('/', async(req, res) => {
     const title = req.body.title;
     const user_id = req.session.id;
 
@@ -59,18 +59,18 @@ module.exports = (knex) => {
     }
   })
 
-  router.post('/item', async (req, res) => {
+  router.post('/item', async(req, res) => {
     const category = await catOf(req.body.todo);
     await knex('list_items')
-      .insert({list_id: req.body.id, item: req.body.todo, category})
+      .insert({ list_id: req.body.id, item: req.body.todo, category })
       .returning('*')
     await res.send(category);
   })
 
-  router.delete('/item', async (req, res) => {
-    const deleted =  await knex('list_items')
-      .where({item: req.body.deletedItem})
-      .andWhere({list_id: req.body.listId})
+  router.delete('/item', async(req, res) => {
+    const deleted = await knex('list_items')
+      .where({ item: req.body.deletedItem })
+      .andWhere({ list_id: req.body.listId })
       .del()
       .returning('*')
 
@@ -80,9 +80,9 @@ module.exports = (knex) => {
 
   })
 
-  router.delete('/', async (req, res) => {
+  router.delete('/', async(req, res) => {
     await knex('users_lists')
-      .where({list_id: req.body.listId })
+      .where({ list_id: req.body.listId })
       .del()
     await knex('list_items')
       .where({ list_id: req.body.listId })

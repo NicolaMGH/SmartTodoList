@@ -1,15 +1,15 @@
-function signInButton() {
-  const $error = $('#errorLogin');
-  $('.sign-in').on('click', async(event) => {
+function register() {
+  const $error = $('#errorRegister');
+  $('.login-dropdown').on('submit', async(event) => {
     $error.hide({
       opacity: "toggle"
     });
     event.preventDefault();
     const username = $('input[type="username"]').val();
+    const email = $('input[type="email"]').val();
     const password = $('input[type="password"]').val();
-    console.log(username, password);
 
-    const status = await $.ajax('/login', { method: 'PUT', data: { username, password } })
+    const status = await $.ajax('/users', { method: 'POST', data: { username, email, password } })
     if (status) {
       $error.hide({
         opacity: "toggle"
@@ -19,7 +19,7 @@ function signInButton() {
       $error.show({
         opacity: "toggle"
       });
-      $error.text('Incorrect Username or Password');
+      $error.text('Please enter a valid Username, E-mail, and Password');
     }
   });
 }
@@ -30,16 +30,8 @@ function faded(e) {
   $('.login-text').animate({ opacity: 1 }, { duration: 1500 })
 }
 
-function registerButtonHome() {
-  $('.register').on('click', (event) => {
-    event.preventDefault();
-    document.location = '/register'
-  })
-}
-
 
 $(document).ready(function() {
-  signInButton();
+  register();
   faded();
-  registerButtonHome();
 });

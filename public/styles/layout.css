@@ -61,6 +61,12 @@ html body h1 {
   border: 1px solid black;
 }
 
+.registerPage {
+  border: 1px solid black;
+  margin-left: 25px;
+  border-radius: 5px;
+}
+
 .background {
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
@@ -85,6 +91,13 @@ html body h1 {
   color: #20298f;
 }
 
+.fa-envelope {
+  width: 5%;
+  font-size: 22px;
+  margin-right: 5%;
+  color: #20298f;
+}
+
 .login-header {
   color: white;
   text-align: center;
@@ -96,4 +109,28 @@ html body h1 {
   color: white;
   text-align: center;
   opacity: 0;
+}
+
+#errorLogin {
+  padding: 2px;
+  margin-right: 10px;
+  margin-left: 30px;
+  background-color: #ff4040;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid black;
+  display: none;
+}
+
+#errorRegister {
+  padding: 2px;
+  margin-right: 10px;
+  margin-left: 30px;
+  background-color: #ff4040;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid black;
+  display: none;
 }

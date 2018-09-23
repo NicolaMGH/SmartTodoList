@@ -1,4 +1,4 @@
-function home () {
+function home() {
   $('#home').on('click', () => {
     document.location = '/'
   })
@@ -9,7 +9,7 @@ $(document).ready(() => {
     .then((data) => {
       renderChart(data);
     })
-home();
+  home();
 });
 
 
@@ -45,8 +45,8 @@ const renderChart = (data) => {
       },
       legend: {
         labels: {
-        fontSize: 20,
-        fontColor: 'white'
+          fontSize: 20,
+          fontColor: 'white'
         }
       }
     }
@@ -55,7 +55,7 @@ const renderChart = (data) => {
 
 const docclick = () => {
   $.ajax('/analytics', { method: 'PUT' })
-  .then((data) => {
-    renderChart(data);
-  })
+    .then((data) => {
+      renderChart(data);
+    })
 }
