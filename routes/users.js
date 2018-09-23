@@ -14,6 +14,26 @@ module.exports = (knex) => {
     });
   });
 
+  router.post('/', async (req, res) => {
+    const { username } = req.body;
+    const { email } = req.body;
+    const { password } = req.body;
+    console.log(username,email,password);
+    try {
+      const id = await knex('users')
+        .insert({ username, email, password })
+        .returning('id');
+
+      console.log(id);
+
+      req.session.id = id[0];
+      res.send(true);
+    } catch (err) {
+      res.send(false);
+    }
+
+  })
+
   router.get("/auth", (req, res) => {
     const UN = req.body.username;
     const PW = req.body.password;

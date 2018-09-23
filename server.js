@@ -43,7 +43,7 @@ app.use(cookieSess({
 }));
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
+app.use("/users", usersRoutes(knex));
 app.use("/lists", listsRoutes(knex));
 
 // Home page
