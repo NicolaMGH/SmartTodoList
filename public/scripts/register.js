@@ -30,8 +30,14 @@ function faded(e) {
   $('.login-text').animate({ opacity: 1 }, { duration: 1500 })
 }
 
+function signIn () {
+  $('.sign-in-register').on('click', () => {
+    document.location = '/';
+  })
+}
 
 $(document).ready(function() {
   register();
   faded();
+  signIn();
 });
