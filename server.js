@@ -82,15 +82,19 @@ app.put('/share', async (req, res) => {
   const listid = req.body.listid;
   const user = req.body.username;
   try {
-    const userid = await knex('users')
+    let userid = await knex('users')
       .select('id')
-      .where('username', user)
-    const insert = await knex('users_lists')
+      .where('username', user);
+
+    userid = userid[0].id;
+
+    await knex('users_lists')
       .insert({user_id: userid, list_id: listid})
       .returning('*');
-      res.send(insert);
+
+    await res.send(true);
   } catch (err) {
-    res.send(err);
+    res.send(false);
   }
 })
 
