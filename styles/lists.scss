@@ -46,7 +46,7 @@
   margin-top: 2px;
   margin-left: 60px;
   float: right;
-  font-size:30px;
+  font-size: 30px;
 }
 
 .todos .lists {
@@ -142,12 +142,11 @@
   display: none;
   border-radius: 50px;
   margin-left: 22%;
-
 }
 
 .new-list-input input[placeholder] {
-    text-align: center;
-  }
+  text-align: center;
+}
 
 .completed {
   color: gray;
@@ -156,4 +155,9 @@
 
 .highlight {
   color: blue;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
 }

@@ -2,18 +2,18 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
+const express = require("express");
+const bodyParser = require("body-parser");
+const sass = require("node-sass-middleware");
+const app = express();
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
-const cookieSess  = require('cookie-session');
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig[ENV]);
+const morgan = require('morgan');
+const knexLogger = require('knex-logger');
+const cookieSess = require('cookie-session');
 const massage = require('./helpers/data-massage')
 
 // Seperated Routes for each Resource
@@ -55,7 +55,7 @@ app.get("/", (req, res) => {
   }
 });
 
-app.put("/login", async (req, res) => {
+app.put("/login", async(req, res) => {
   const user = req.body.username;
   console.log(req.body);
 
@@ -78,7 +78,7 @@ app.get('/analytics', (req, res) => {
   res.render('analytics');
 })
 
-app.put('/share', async (req, res) => {
+app.put('/share', async(req, res) => {
   const listid = req.body.listid;
   const user = req.body.username;
   console.log(user, listid);
@@ -93,7 +93,7 @@ app.put('/share', async (req, res) => {
 
 
     await knex('users_lists')
-      .insert({user_id: userid, list_id: listid})
+      .insert({ user_id: userid, list_id: listid })
       .returning('*');
 
     await res.send(true);
@@ -105,7 +105,7 @@ app.put('/share', async (req, res) => {
 })
 
 
-app.put('/analytics', async (req, res) => {
+app.put('/analytics', async(req, res) => {
   let data = await knex
     .select('lists.id', 'list_items.item', 'list_items.category', 'lists.title')
     .from('lists')

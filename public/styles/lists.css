@@ -156,3 +156,8 @@
 .highlight {
   color: blue;
 }
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
