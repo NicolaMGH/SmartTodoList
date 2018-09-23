@@ -240,14 +240,25 @@ function shareList () {
 }
 
 function shareForm() {
+  const $error = $(".errorShare");
   $('.shareForm').on('submit', async (e) => {
+    $error.hide({
+            opacity: "toggle"
+        });
     e.preventDefault();
     const username = $(e.target).children('input').val();
     const status = await $.ajax('/share', { method: 'PUT', data: {listid: CURRENTLIST, username }});
     if (status) {
       $('.shareForm').fadeOut();
+      $error.hide({
+            opacity: "toggle"
+        });
     } else {
       // invalid username;
+      $error.show({
+            opacity: "toggle"
+        });
+      $error.text('Invalid Username');
     }
   })
 }

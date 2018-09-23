@@ -32,7 +32,7 @@
   border-radius: 10px;
   border: 0;
   border: 1px solid black;
-  margin-right: 20%;
+  margin-right: 15%;
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -140,9 +140,32 @@
   background-color: rgba(255, 255, 255, 0.5);
   margin-top: 15px;
   padding: 5%;
+  display: none;
 }
 
 .shareForm input {
   width: 80%;
   margin-bottom: 5px;
+}
+
+.shareForm .shareButton {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.shareForm .errorShare {
+  padding: 2px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: #ff4040;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid black;
+  display: none;
+}
+
+.shareForm .form-group {
+  margin-bottom: 1px;
 }
