@@ -14,7 +14,7 @@ function register() {
       $error.hide({
         opacity: "toggle"
       });
-      document.location = '/login';
+      document.location = '/';
     } else {
       $error.show({
         opacity: "toggle"
@@ -29,6 +29,7 @@ function faded(e) {
   $('.login-header').animate({ opacity: 1 }, { duration: 1500 })
   $('.login-text').animate({ opacity: 1 }, { duration: 1500 })
 }
+
 
 $(document).ready(function() {
   register();
