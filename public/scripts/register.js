@@ -14,7 +14,7 @@ function register() {
       $error.hide({
         opacity: "toggle"
       });
-      document.location = '/login';
+      document.location = '/';
     } else {
       $error.show({
         opacity: "toggle"
