@@ -45,7 +45,8 @@ const renderChart = (data) => {
       },
       legend: {
         labels: {
-        fontSize: 20
+        fontSize: 20,
+        fontColor: 'white'
         }
       }
     }

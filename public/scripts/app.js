@@ -232,12 +232,24 @@ function fadedHome (){
 
 function shareList () {
   $(document).on("click", ".share", function(event){
-      const listId = $(this).closest('.lists').attr('id');
-      CURRENTLIST = listId;
-
-      $.ajax('/share', {method: 'PUT', data: CURRENTLIST})
     event.stopPropagation();
+    const listId = $(this).closest('.lists').attr('id');
+    CURRENTLIST = listId;
+    $('.shareForm').fadeToggle();
   });
+}
+
+function shareForm() {
+  $('.shareForm').on('submit', async (e) => {
+    e.preventDefault();
+    const username = $(e.target).children('input').val();
+    const status = await $.ajax('/share', { method: 'PUT', data: {listid: CURRENTLIST, username }});
+    if (status) {
+      $('.shareForm').fadeOut();
+    } else {
+      // invalid username;
+    }
+  })
 }
 
 $(document).ready(function() {
@@ -257,4 +269,5 @@ $(document).ready(function() {
   analytics();
   fadedHome();
   shareList();
+  shareForm();
 });
