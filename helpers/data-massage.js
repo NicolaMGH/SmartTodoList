@@ -10,7 +10,9 @@ module.exports = {
       } else if (!lists[item.id][item.category]) {
         lists[item.id][item.category] = [item.item];
       } else {
-        lists[item.id][item.category].push(item.item);
+        if (!lists[item.id][item.category].includes(item.item)) {
+          lists[item.id][item.category].push(item.item);
+        }
       }
     });
     return lists;
