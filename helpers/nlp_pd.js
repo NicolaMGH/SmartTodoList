@@ -1,6 +1,6 @@
 const natural = require('natural');
 const fs = require('fs');
-const data = fs.readFileSync("./toDoListModel.json", "utf-8");
+const data = fs.readFileSync("./helpers/toDoListModel.json", "utf-8");
 const model = natural.BayesClassifier.restore(JSON.parse(data));
 const paralleldots = require('./paralleldot_API.js')
 

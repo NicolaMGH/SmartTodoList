@@ -3,7 +3,9 @@
 const express = require('express');
 const router = express.Router();
 const massage = require('../helpers/data-massage');
-const catOf = require('../helpers/paralleldot_API');
+// API or Trained NaturalNode model;
+// const catOf = require('../helpers/paralleldot_API');
+const analysis = require('../helpers/nlp_pd.js');
 
 module.exports = (knex) => {
 
@@ -60,7 +62,7 @@ module.exports = (knex) => {
   })
 
   router.post('/item', async(req, res) => {
-    const category = await catOf(req.body.todo);
+    const category = await analysis(req.body.todo);
     await knex('list_items')
       .insert({ list_id: req.body.id, item: req.body.todo, category })
       .returning('*')
