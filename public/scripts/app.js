@@ -232,6 +232,10 @@ function fadedHome (){
 
 function shareList () {
   $(document).on("click", ".share", function(event){
+    $('.form-group').children().val('');
+    $(".errorShare").hide({
+      opacity: "toggle"
+    })
     event.stopPropagation();
     const listId = $(this).closest('.lists').attr('id');
     CURRENTLIST = listId;
@@ -247,7 +251,6 @@ function shareForm() {
         });
     e.preventDefault();
     const username = $(e.target).children().children('input').val();
-    console.log(username);
 
     const status = await $.ajax('/share', { method: 'PUT', data: {listid: CURRENTLIST, username }});
     if (status) {
@@ -255,6 +258,7 @@ function shareForm() {
       $error.hide({
             opacity: "toggle"
         });
+      $(e.target).children().children('input').val('');
     } else {
       // invalid username;
       $error.show({
