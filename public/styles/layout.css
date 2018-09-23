@@ -61,6 +61,11 @@ html body h1 {
   border: 1px solid black;
 }
 
+.registerPage {
+  border: 1px solid black;
+  margin-left: 25px;
+}
+
 .background {
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.5);
@@ -79,6 +84,13 @@ html body h1 {
 }
 
 .fa-lock {
+  width: 5%;
+  font-size: 22px;
+  margin-right: 5%;
+  color: #20298f;
+}
+
+.fa-envelope {
   width: 5%;
   font-size: 22px;
   margin-right: 5%;

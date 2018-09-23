@@ -66,7 +66,7 @@ const renderTDL = async() => {
 
 
 function signInButton() {
-  $('.login-dropdown').on('submit', async(event) => {
+  $('.sign-in').on('click', async(event) => {
     event.preventDefault();
     $('.login-dropdown').fadeToggle();
     await $.ajax('/test', { method: 'GET' });
@@ -265,7 +265,7 @@ function shareForm() {
       });
       $error.text('Invalid Username');
     }
-  })
+  });
 }
 
 $(document).ready(function() {

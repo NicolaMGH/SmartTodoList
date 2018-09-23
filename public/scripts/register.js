@@ -1,6 +1,6 @@
 function signInButton() {
   const $error = $('#errorLogin');
-  $('.sign-in').on('click', async(event) => {
+  $('.login-dropdown').on('submit', async(event) => {
     $error.hide({
       opacity: "toggle"
     });
@@ -30,15 +30,7 @@ function faded(e) {
   $('.login-text').animate({ opacity: 1 }, { duration: 1500 })
 }
 
-function registerButtonHome() {
-  $('.register').on('click', (event) => {
-    document.location = '/register'
-  })
-}
-
-
 $(document).ready(function() {
   signInButton();
   faded();
-  registerButtonHome();
 });

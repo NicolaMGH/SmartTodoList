@@ -55,6 +55,10 @@ app.get("/", (req, res) => {
   }
 });
 
+app.get("/register", (req, res) => {
+    res.render("register");
+});
+
 app.put("/login", async(req, res) => {
   const user = req.body.username;
   console.log(req.body);
@@ -76,7 +80,7 @@ app.put("/login", async(req, res) => {
 
 app.get('/analytics', (req, res) => {
   res.render('analytics');
-})
+});
 
 app.put('/share', async(req, res) => {
   const listid = req.body.listid;
