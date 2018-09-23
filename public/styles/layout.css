@@ -64,6 +64,7 @@ html body h1 {
 .registerPage {
   border: 1px solid black;
   margin-left: 25px;
+  border-radius: 5px;
 }
 
 .background {
