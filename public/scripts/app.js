@@ -246,7 +246,9 @@ function shareForm() {
             opacity: "toggle"
         });
     e.preventDefault();
-    const username = $(e.target).children('input').val();
+    const username = $(e.target).children().children('input').val();
+    console.log(username);
+
     const status = await $.ajax('/share', { method: 'PUT', data: {listid: CURRENTLIST, username }});
     if (status) {
       $('.shareForm').fadeOut();

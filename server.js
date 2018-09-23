@@ -81,12 +81,16 @@ app.get('/analytics', (req, res) => {
 app.put('/share', async (req, res) => {
   const listid = req.body.listid;
   const user = req.body.username;
+  console.log(user, listid);
+
   try {
     let userid = await knex('users')
       .select('id')
       .where('username', user);
 
     userid = userid[0].id;
+    console.log(userid);
+
 
     await knex('users_lists')
       .insert({user_id: userid, list_id: listid})
@@ -94,6 +98,8 @@ app.put('/share', async (req, res) => {
 
     await res.send(true);
   } catch (err) {
+    console.error(err);
+
     res.send(false);
   }
 })
