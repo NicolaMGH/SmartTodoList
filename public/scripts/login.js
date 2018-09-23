@@ -1,5 +1,9 @@
 function signInButton (){
+    const $error = $('#errorLogin');
   $('.login-dropdown').on('submit', async (event) => {
+    $error.hide({
+            opacity: "toggle"
+        });
     event.preventDefault();
     const username = $('input[type="username"]').val();
     const password = $('input[type="password"]').val();
@@ -7,7 +11,15 @@ function signInButton (){
 
     const status = await $.ajax('/login', {method: 'PUT', data: {username, password}})
     if (status) {
+        $error.hide({
+            opacity: "toggle"
+        });
       document.location = '/';
+    } else {
+        $error.show({
+            opacity: "toggle"
+        });
+      $error.text('Incorrect Username or Password');
     }
   });
 }
