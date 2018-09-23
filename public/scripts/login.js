@@ -33,7 +33,7 @@ function faded(e) {
 function registerButtonHome() {
   $('.register').on('click', (event) => {
     event.preventDefault();
-    document.location = '/'
+    document.location = '/register'
   })
 }
 
