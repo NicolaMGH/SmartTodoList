@@ -85,10 +85,11 @@
   font-size: 15px;
   background-color: #f7f7f7;
   width: 90%;
-  padding: 5px 10px 5px 35%;
+  padding: 5px 10px 5px 40%;
   box-sizing: border-box;
   border: 3px solid transparent;
   display: none;
+  margin-top: 5px;
 }
 
 .todos .list-dropdown {

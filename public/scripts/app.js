@@ -153,6 +153,7 @@ function newTodoPlus() {
   $(document).on('click', '.fa-plus', (e) => {
     e.stopPropagation();
     $(e.target).parent().parent().next('.new-todo-input').fadeToggle();
+    $('.new-todo-input').focus();
   })
 }
 
