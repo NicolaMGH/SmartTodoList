@@ -59,6 +59,17 @@ html body h1 {
   margin-left: 10px;
   border-radius: 5px;
   border:1px solid black;
+  border:1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  padding:2px 5px 4px 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.sign-in-register:hover {
+  text-decoration: none;
+  color: black;
 }
 
 .register {
