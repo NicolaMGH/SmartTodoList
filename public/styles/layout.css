@@ -39,10 +39,6 @@ html body h1 {
   border-radius: 5px;
 }
 
-.login-dropdown .register {
-  border-radius: 5px;
-}
-
 .login-dropdown input {
   width: 75%;
   border-radius: 5px;
@@ -57,8 +53,25 @@ html body h1 {
   border: 1px solid black;
 }
 
+.sign-in-register {
+  margin-top: 5px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
 .register {
   border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  padding: 2px 5px 4px 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.register:hover {
+  text-decoration: none;
+  color: black;
 }
 
 .registerPage {
