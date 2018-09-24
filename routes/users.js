@@ -19,16 +19,20 @@ module.exports = (knex) => {
     const { email } = req.body;
     const { password } = req.body;
     console.log(username,email,password);
-    try {
-      const id = await knex('users')
-        .insert({ username, email, password })
-        .returning('id');
+    if (!(username || email || password)) {
+      try {
+        const id = await knex('users')
+          .insert({ username, email, password })
+          .returning('id');
 
-      console.log(id);
+        console.log(id);
 
-      req.session.id = id[0];
-      res.send(true);
-    } catch (err) {
+        req.session.id = id[0];
+        res.send(true);
+      } catch (err) {
+        res.send(false);
+      }
+    } else {
       res.send(false);
     }
 
