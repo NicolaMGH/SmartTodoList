@@ -23,8 +23,6 @@ module.exports = (knex) => {
           .insert({ username, email, password })
           .returning('id');
 
-        console.log(id);
-
         req.session.id = id[0];
         res.send(true);
       } catch (err) {
