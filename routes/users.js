@@ -18,8 +18,6 @@ module.exports = (knex) => {
     const { username } = req.body;
     const { email } = req.body;
     const { password } = req.body;
-    console.log(username,email,password);
-    if (!(username || email || password)) {
       try {
         const id = await knex('users')
           .insert({ username, email, password })
@@ -32,9 +30,6 @@ module.exports = (knex) => {
       } catch (err) {
         res.send(false);
       }
-    } else {
-      res.send(false);
-    }
 
   })
 
