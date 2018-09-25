@@ -36,8 +36,8 @@ SMARTS is a smart todo list that auto categorizes based on what the user inputs 
 - nodemon: 1.18.4
 
 ## Final Project
-![home-page](https://github.com/NicolaMGH/tweeter/blob/master/docs/home-page.png)
-![hiding-textarea](https://github.com/NicolaMGH/tweeter/blob/master/docs/hiding-textarea.png)
-![error1](https://github.com/NicolaMGH/tweeter/blob/master/docs/error1.png)
-![error2](https://github.com/NicolaMGH/tweeter/blob/master/docs/error2.png)
-![tweets](https://github.com/NicolaMGH/tweeter/blob/master/docs/tweets.png)
+![login](https://github.com/NicolaMGH/SmartTodoList/blob/master/docs/Login.png)
+![register](https://github.com/NicolaMGH/SmartTodoList/blob/master/docs/Register.png)
+![todos](https://github.com/NicolaMGH/SmartTodoList/blob/master/docs/Todos.png)
+![todos2](https://github.com/NicolaMGH/SmartTodoList/blob/master/docs/Todos2.png)
+![analytics](https://github.com/NicolaMGH/SmartTodoList/blob/master/docs/Analytics.png)
