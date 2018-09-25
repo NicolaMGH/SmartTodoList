@@ -6,9 +6,9 @@
 SMARTS is a smart todo list that auto categorizes based on what the user inputs when adding a new todo.
 
 ## Contributors
-Nicola Metallo - https://github.com/NicolaMGH/
-Raymond Kwan - https://github.com/RayKayy
-Donny Li - https://github.com/donny1103
+- Nicola Metallo - https://github.com/NicolaMGH/
+- Raymond Kwan - https://github.com/RayKayy
+- Donny Li - https://github.com/donny1103
 
 ## Getting Started
 
